@@ -1,0 +1,51 @@
+﻿
+.modal-content {
+    border-radius: 25px !important;
+}
+
+.modal-body {
+    padding: 0 !important;
+}
+
+.card-c {
+    
+}
+
+.card-header-c {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-header-c .icon {
+    width: 50px;
+    object-fit: contain;
+}
+
+.card-header-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: normal;
+    color: rgb(97, 97, 255);
+}
+
+.card-header-subtitle {
+    font-size: 0.8125rem;
+    line-height: 20px;
+    color: rgb(103, 104, 121);
+}
+.card-margin-left {
+    margin-left: 30px;
+}
+
+.card-margin-right {
+    margin-right: 30px;
+}
+
+.card-success-c .card-header-title {
+    color: var(--bs-success);
+}
+
+.card-brown-c .card-header-title {
+    color: var(--bs-brown);
+}

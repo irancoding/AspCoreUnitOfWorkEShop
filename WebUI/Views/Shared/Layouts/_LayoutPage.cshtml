@@ -1,0 +1,73 @@
+﻿@using Infrastructure.Utils.Extensions
+@using Domain.Enum
+<!--Cleaned-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>سامانه مانیا پروژه</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/common/plugins/bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/common/plugins/bootstrap/js/bootstrap5.3.2.bundle.min.js"></script>
+
+    <!--icheck-->
+    <link href="~/common/plugins/form/icheck-1.0.3/icheck-1.0.3/skins/minimal/_all.css" rel="stylesheet" />
+    <link href="~/common/plugins/form/icheck-1.0.3/icheck-1.0.3/skins/minimal/minimal.css" rel="stylesheet" />
+    <link href="~/common/plugins/form/icheck-1.0.3/icheck-1.0.3/skins/minimal/blue.css" rel="stylesheet" />
+
+    <!--style-->
+    <link rel="stylesheet" href="~/site/css/style-general.css"><!--copy structure from common and change it-->
+    <link rel="stylesheet" href="~/site/css/style-components.css"><!--copy structure from common and change it-->
+    <link rel="stylesheet" href="~/site/css/style.css">
+
+    <!--bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!--owlCarousel-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    @RenderSection("Head", required: false)
+
+</head>
+<body>
+
+    <div class="page-wrapper">
+        @Html.RenderAction("_Partials", "Layout", new { Area = "", Partial = LayoutPartialEnum.PageNavbarProduct })
+        @RenderBody()
+        @Html.RenderAction("_Partials", "Layout", new { Area = "", Partial = LayoutPartialEnum.PageFooter })
+    </div>
+
+    <!--scripts-->
+    <script src="~/site/js/script-general.js"></script><!--copy structure from common and change it-->
+    <script src="~/site/js/script-components.js"></script><!--copy structure from common and change it-->
+    <script src="~/site/js/script.js"></script>
+
+    <script src="~/common/js/script.js"></script>
+    @RenderSection("Scripts", required: false)
+
+    <!--ajax-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" asp-append-version="true"></script>
+
+    <!--inputmask-->
+    <script src="~/common/plugins/input-mask/dist/jquery.inputmask.min.js"></script>
+    <script src="~/common/plugins/input-mask/dist/inputmask.min.js"></script>
+    <script src="~/common/plugins/input-mask/dist/bindings/inputmask.binding.js"></script>
+
+    <!--owl.carousel-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <partial name="~/Views/Shared/_GlobalScript.cshtml" />
+    <partial name="~/Views/Shared/_GlobalView.cshtml" />
+
+</body>
+</html>

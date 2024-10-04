@@ -1,0 +1,53 @@
+﻿@model WebUI.Models.Auth.SignUpVm
+@{
+    ViewData["Title"] = "ثبت نام";
+}
+
+<form autocomplete="off" asp-route-returnUrl="@Model.returnUrl" class="form" enctype="multipart/form-data" method="post" data-ajax="true" data-ajax-url="/Auth/SignUp" data-ajax-method="post" data-ajax-failure="failedAjax" data-ajax-success="successAjax">
+    <div class="sign-modal">
+        <div class="sign-modal-header">
+            <button type="button" class="btn btn-light rounded-circle" style="position:absolute;right:20px" data-bs-toggle="modal">
+                <i class="fa fa-times"></i>
+            </button>
+            <div class="sign-modal-header-title">ثبت نام حساب کاربری</div>
+            <div class="sign-modal-header-subtitle">برای ثبت نام لطفا شماره موبایل خود را وارد کنید</div>
+        </div>
+        <div class="sign-modal-body">
+            <div>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                @Html.TextBoxFor(f => f.MobileNumber, new { @class = "form-control mb-2 form-control-md text-center", @placeholder = "شماره موبایل" })
+                @Html.TextBoxFor(f => f.FullName, new { @class = "form-control mb-2 form-control-md text-center", @placeholder = "نام و نام خانوادگی" })
+                @Html.TextBoxFor(f => f.Email, new { @class = "form-control mb-2 form-control-md text-center", @placeholder = "ایمیل" })
+
+                <div class="form-froup container-select2 text-center">
+                    <input class="form-control form-control-md text-center" type="password" name="Password" @*autocomplete="off"*@ placeholder="رمز عبور" />
+                </div>
+                <hr>
+                <div>
+                    <button type="submit" href="javascript:void(0)" class="btn btn-success form-control">ثبت نام</button>
+                    <p class="sign-modal-rules">ثبت نام سایت به معنای پذیرش قوانین و حریم خصوصی میباشد</p>
+                </div>
+            </div>
+        </div>
+        <div class="sign-modal-footer">
+            <p class="sign-modal-or">یا</p>
+            <a id="btn-sign-up-in-sign-modal" onclick="_signIn()" href="javascript:void(0)" class="btn btn-light form-control">ورود</a>
+        </div>
+    </div>
+</form>
+
+<script>
+    failedAjax = function (response) {
+        notify(response.Message, "error", "bottom-center");
+    };
+    successAjax = function (response) {
+        if (response.Result) {
+            location.reload();
+            //location.href = response.Url;
+            $("#isAuthenticated").val(true);
+        }
+        else {
+            alert(response.Message);
+        }
+    };
+</script>

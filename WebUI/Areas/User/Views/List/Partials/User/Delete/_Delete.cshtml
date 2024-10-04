@@ -1,0 +1,56 @@
+﻿@model Domain.Entities.AppUser
+@using Kendo.Mvc.UI
+
+<form class="form" enctype="multipart/form-data" method="post" data-ajax="true" data-ajax-url="/User/List/Delete" data-ajax-method="post" data-ajax-failure="failedAjax" data-ajax-success="successAjax">
+    <div class="modal-card-style">
+        <div class="modal-header-card-style px-1 py-1">
+            <div class="container-img bg-danger d-flex align-items-center justify-content-center">
+                <img src="~/images/icon/delete.png" class="w-25" />
+            </div>
+        </div>
+        <div class="modal-body-card-style px-3">
+            <div class="tab-content">
+                <div id="home" class="tab-pane active">
+
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alarm-message text-center py-3">
+                                <p class="text">آیا مطمئن هستید ؟</p>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(model => model.Id)
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer-card-style px-2 py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <button type="submit" class="btn btn-danger px-10">بله</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">
+                    بازگشت
+                    <i class="fa fa-2x fa-angle-left"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    failedAjax = function (response) {
+        alert("خطا");
+    };
+    successAjax = function (response) {
+        if (response.Result) {
+            closeModal();
+            $('#grid').data('kendoGrid').dataSource.read()
+        }
+        else {
+            //alert(response.Message)
+        }
+
+    };
+</script>
+
+

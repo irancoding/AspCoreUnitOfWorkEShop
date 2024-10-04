@@ -1,0 +1,131 @@
+﻿@using Kendo.Mvc.UI
+@model Application.ViewModels.LocationReadVm
+
+    <div class="k-rtl container">
+        @(Html.Kendo().TreeList<Application.ViewModels.LocationVm>()
+    .Name("treelist")
+    .Toolbar(toolbar =>
+    {
+        //toolbar.Create().Text("جدید");
+        //toolbar.Save().Text("ذخیره تغییرات");
+        //toolbar.Cancel().Text("انصراف");
+        toolbar.Search().Text("جستجو ...");
+    })
+    .Search(s =>
+    {
+        s.Field(o => o.Name);
+        s.Field(o => o.Description);
+        //s.Field(o => o.ShipCity, "gt");
+        //s.Field(o => o.ShipCity, "eq");
+        //s.Field(o => o.ShipCity, "contains");
+    })
+    .Columns(columns =>
+    {
+        columns.Add().Field(e => e.Name).Title("نام").Width(200);
+        columns.Add().Field(e => e.Id).Title("توضیحات").Width(100).TemplateId("status-template");
+        columns.Add().Field(e => e.Id).Title("عملیات").Width(100).TemplateId("operation-template");
+        //columns.Add().Field(e => e.Status).Template("# if(Status==true) {# <span class='label label-primary'>فعال</span> #} else {# <span class='label label-inverse-primary'>غیر فعال</span> #}#").Title("وضعیت");
+        //columns.Add().Field(e => e.HireDate).Format("{0:MMMM d, yyyy}");
+        //columns.Add().Field(e => e.Extension).Title("Ext").Format("{0:#}");
+        //columns.Add().Command(c =>
+        //{
+        //    //c.CreateChild().Text(" ");
+        //    c.Destroy().Text(" ");
+        //}
+        //).Width(240);
+    })
+    .Events(ev=>ev.DataBound("onDataBound"))
+    //.Editable(e => e.Mode(TreeListEditMode.InCell).Move(false))
+    .DataSource(dataSource => dataSource
+        .Batch(true)
+        .Read(read => read.Action("All", "Location", new { Area = "Common" }))
+        .Create(create => create.Action("Create", "Location",new { Area="Common"}).Type(HttpVerbs.Post))
+        .Update(update => update.Action("Update", "Location", new { Area = "Common" }).Type(HttpVerbs.Post))
+        .Destroy(delete => delete.Action("Delete", "Location", new { Area = "Common" }).Type(HttpVerbs.Post))
+        .Events(e => e.Error("error_handler"))
+        .Model(m =>
+        {
+            m.Id(f => f.Id);
+            m.ParentId(f => f.ParentId);
+            //m.ParentId(f => f.ReportsTo);
+            //m.Expanded(true);
+            m.Field(f => f.Name);
+            m.Field(f => f.Description);
+            m.Field(f => f.Status);
+            //m.Field(f => f.HireDate);
+            //m.Field(f => f.BirthDate);
+            //m.Field(f => f.Extension).DefaultValue(0);
+        })
+    )
+    .Height(540)
+)
+    </div>
+    <script>
+
+        function error_handler(e) {
+            alert(e.xhr.responseText);
+        }
+
+    </script>
+    <script>
+        //The following code removes the 'Add child' button from the new records,
+        //because they will receive an ID after saving the changes, which means that
+        //no child records  could be added until that
+        function onDataBound(e) {
+            var items = e.sender.items();
+            for (var i = 0; i < items.length; i++) {
+                var row = $(items[i]);
+                var dataItem = e.sender.dataItem(row);
+                if (dataItem.isNew()) {
+                    row.find("[data-command='createchild']").hide();
+                }
+                else {
+                    row.find("[data-command='createchild']").show();
+                }
+            }
+        }
+    </script>
+
+    <!--CRUD-->
+    <section>
+
+        <!-- _Create -->
+        <script>
+        function _Create(parentId) {
+            $.ajax({
+                url: "@Url.Action("_Create","Location",new { Area="Common"})",
+                data: { ParentId: parentId},
+                success: function (response) {
+                    showModal('', response,'lg');
+                }
+            })
+        }
+        </script>
+
+        <!-- _Update -->
+        <script>
+        function _Update(Id) {
+            $.ajax({
+                url: "@Url.Action("_Update", "Location", new { Area = "Common" })",
+                data: { Id: Id },
+                success: function (response) {
+                    showModal('', response,'lg');
+                }
+            })
+        }
+        </script>
+
+        <!-- _Delete -->
+        <script>
+        function _Delete(Id) {
+            $.ajax({
+                url: "@Url.Action("_Delete", "Location", new { Area = "Common" })",
+                data: { Id: Id },
+                success: function (response) {
+                    showModal('', response,'md');
+                }
+            })
+        }
+        </script>
+
+    </section>

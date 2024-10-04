@@ -1,0 +1,54 @@
+﻿@model Application.ViewModels.ProductVm
+@using Kendo.Mvc.UI
+
+<form class="form" enctype="multipart/form-data" method="post" data-ajax="true" data-ajax-url="/Product/List/Delete" data-ajax-method="post" data-ajax-failure="failedAjax" data-ajax-success="successAjax">
+    <div class="modal-card-style">
+        <div class="modal-header-card-style px-1 py-1">
+            <div class="container-img bg-danger d-flex align-items-center justify-content-center">
+                <svg height="100px" width="100px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <polygon style="fill:#ffffff;" points="404.176,0 256,148.176 107.824,0 0,107.824 148.176,256 0,404.176 107.824,512 256,363.824 404.176,512 512,404.176 363.824,256 512,107.824 "></polygon> </g></svg>
+            </div>
+        </div>
+        <div class="modal-body-card-style px-3">
+            <div class="tab-content">
+                <div id="home" class="tab-pane active">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alarm-message text-center py-3">
+                                <p class="text">Are you sure ?</p>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.Payload)
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer-card-style px-2 py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <button type="submit" class="btn btn-danger px-5">Delete</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">
+                    Cancel
+                    <i class="fa fa-2x fa-angle-left"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    failedAjax = function (response) {
+        notify(response.Message, "error", "bottom-center");
+    };
+    successAjax = function (response) {
+        if (response.Result) {
+            closeModal();
+            $('#grid').data('kendoGrid').dataSource.read()
+        }
+        else {
+            notify(response.Message, "error", "bottom-center");
+        }
+    };
+</script>
+
+

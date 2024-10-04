@@ -1,0 +1,32 @@
+//[
+//  {
+//    "outputFileName": "wwwroot/site/css/style.min.css",
+//    "inputFiles": [
+//      "wwwroot/site/css/style.css"
+//    ]
+//  },
+//  {
+//    "outputFileName": "wwwroot/site/css/digikala-navbar.min.css",
+//    "inputFiles": [
+//      "wwwroot/site/css/digikala-navbar.css"
+//    ]
+//  },
+//  {
+//    "outputFileName": "wwwroot/site/css/bootstrap-c.min.css",
+//    "inputFiles": [
+//      "wwwroot/site/css/bootstrap-c.css"
+//    ]
+//  },
+//  {
+//    "outputFileName": "wwwroot/panel/css/plus/style.min.css",
+//    "inputFiles": [
+//      "wwwroot/panel/css/plus/style.css"
+//    ]
+//  },
+//  {
+//    "outputFileName": "wwwroot/plus/js/icheck.min.js",
+//    "inputFiles": [
+//      "wwwroot/plus/js/icheck.js"
+//    ]
+//  }
+//]

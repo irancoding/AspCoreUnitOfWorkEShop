@@ -1,0 +1,56 @@
+﻿@using Domain.Enum
+@using Infrastructure.Utils
+@{
+    //var freeRole = User.IsInRole(((EnumPermission)EnumPermission.Free).ToString());
+}
+
+<script id="FullName-template" type="text/x-kendo-template">
+    <div class='d-flex align-items-center'>
+        <p class='rounded-1'><i class="fa fa-circle text-warning ms-2"></i>#: User.FullName #</p>
+    </div>
+</script>
+
+<script id="OrderClass-template" type="text/x-kendo-template">
+    <div class='d-flex align-items-center'>
+        <p class='rounded-1'<i class="fa fa-circle text-warning ms-2"></i>#: OrderClass #</p>
+    </div>
+</script>
+
+<script id="OrderType-template" type="text/x-kendo-template">
+    <div class='d-flex align-items-center'>
+        <p class='rounded-1'<i class="fa fa-circle text-warning ms-2"></i>#: OrderType #</p>
+    </div>
+</script>
+
+<script id="status-template" type="text/x-kendo-template">
+
+    # if(Status == '@((int)OrderStatusEnum.Active)') { #
+        <span class="badge bg-warning rounded-1">فعال</span>
+    # }
+     else if(Status == '@((int)OrderStatusEnum.Delete)') { #
+        <span class="badge border-dashed border-1 border-danger text-danger rounded-1">حذف</span>
+    # }
+     else if(Status == '@((int)OrderStatusEnum.InActive)') { #
+       <span class="badge bg-secondary rounded-1">غیرفعال</span>
+    # }
+     else if(Status == '@((int)OrderStatusEnum.Wait)') { #
+        <span class="badge bg-primary rounded-1">انتظار</span>
+    # } #
+
+</script>
+
+<script id="operation-template" type="text/x-kendo-template">
+    <div class='d-flex gap-2 justify-content-center' style='flex-wrap:nowrap'>
+        <a target="_blank" onclick='_Update_Order("@OrderPartialEnum.Update","#=Id#")' class="text-white justify-content-between btn dir-rtl btn-sm btn-primary d-flex align-items-center justify-content-center rounded-0 flex-grow-1">
+            <span>Products</span>
+            <i class="fa fa-folder"></i>
+        </a>
+        <a target="_blank" onclick='_Update_Order("@OrderPartialEnum.Update","#=Id#")' class="text-white justify-content-between btn dir-rtl btn-sm btn-primary d-flex align-items-center justify-content-center rounded-0 flex-grow-1">
+            <span>Update</span>
+            <i class="fa fa-folder"></i>
+        </a>
+        <a class="btn btn-sm btn-light rounded-0 p-2" href="javascript:void(0)" onclick='_Delete_Order("@OrderPartialEnum.Delete","#=Id#")'>
+            <i class='fa fa-trash'></i>
+        </a>
+    </div>
+</script>

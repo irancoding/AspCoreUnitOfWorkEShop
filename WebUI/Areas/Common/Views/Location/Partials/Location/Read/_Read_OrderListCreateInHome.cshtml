@@ -1,0 +1,38 @@
+﻿@using Kendo.Mvc.UI
+@model Application.ViewModels.LocationReadVm
+<!--Cleared-->
+
+<div class="d-flex">
+    <div class="flex-grow-1">
+        <div class="form-group">
+            <label class="col-form-label">استان</label>
+            <select class="form-control" name="ProvinceId" id="ProvinceId" onchange="_Read_Location_Common__Order_List_CreateInHome()">
+                <option>انتخاب کنید</option>
+                @{
+                    foreach (var item in Model.ListLocationVm.Where(s=>s.Type==Domain.Enum.LocationTypeEnum.Province))
+                    {
+                        <option @(Model.ParentId==item.Id?"selected":"") value="@item.Id">@item.Name</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="flex-grow-1">
+        <div class="form-group">
+            <label class="col-form-label">شهر</label>
+            <select class="form-control" name="CityId" id="CityId">
+                <option>انتخاب کنید</option>
+                @{
+                    if (Model.ParentId != null)
+                    {
+                        foreach (var item in Model.ListLocationVm.Where(s => s.ParentId == Model.ParentId).Where(s => s.Type == Domain.Enum.LocationTypeEnum.City))
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+    </div>
+</div>
+

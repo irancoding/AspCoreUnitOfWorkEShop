@@ -1,0 +1,43 @@
+﻿<script id="col-one-template" type="text/x-kendo-template">
+    <div class='d-flex align-items-center'>
+        <img src='/plus/images/icons/docs.png' class='h-30px w-30px rounded-pill' />
+        <div class='mx-2'>
+            <p class='rounded-1'<i class="fa fa-circle text-warning ms-2"></i>#: Name #</p>
+            <small class='text-danger'>#: NO #</small>
+        </div>
+    </div>
+</script>
+
+<script id="status-template" type="text/x-kendo-template">
+    
+    @*# if(StatusEn=='@Domain.Enum.EnumContractStatus.Active') { #
+        <span class="badge bg-warning">#= StatusStr #</span>
+    # }
+     else if(StatusEn=='@Domain.Enum.EnumContractStatus.Delete') { #
+        <span class="badge bg-danger">#= StatusStr #</span>
+    # }
+     else if(StatusEn=='@Domain.Enum.EnumContractStatus.InActive') { #
+       <span class="badge bg-secondary">#= StatusStr #</span>
+    # }
+     else if(StatusEn=='@Domain.Enum.EnumContractStatus.Wait') { #
+        <span class="badge bg-primary">#= StatusStr #</span>
+    # } #*@
+
+</script>
+
+<script id="operation-template" type="text/x-kendo-template">
+    <div class='d-flex justify-content-center' style='flex-wrap:nowrap'>
+        # if(Type!='@((int)(Domain.Enum.LocationTypeEnum.Region))') { #
+            <a class="d-flex justify-content-between flex-grow-1 btn btn-sm btn-primary ms-2 p-3 d-flex align-items-center justify-content-center rounded-1" href="javascript:void(0)"  onclick='_Create("#=Id#")'>
+                <i class='fa fa-plus'></i>
+            </a>
+        # } #
+        <a class="btn btn-sm btn-white ms-2 p-3 d-flex align-items-center justify-content-center rounded-1" href="javascript:void(0)"  onclick='_Update("#=Id#")'>
+            <i class='fa fa-pencil'></i>
+        </a>
+        <a class="btn btn-sm btn-white ms-2 p-3 d-flex align-items-center justify-content-center rounded-1 text-danger" href="javascript:void(0)"  onclick='_Delete("#=Id#")'>
+            <i class='fa fa-trash'></i>
+        </a>
+    </div>
+
+</script>

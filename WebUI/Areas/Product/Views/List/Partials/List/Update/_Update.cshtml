@@ -1,0 +1,80 @@
+﻿@model Application.ViewModels.ProductVm
+@using Kendo.Mvc.UI
+@using Domain.Enum
+
+<!--Clean-->
+<div class="modal-c-clickup-01">
+    <div class="modal-c-header-clickup-01 p-1">
+        <div class="modal-c-title-clickup-01">
+            <button type="button" class="modal-c-btn-close-modal-clickup-01" data-dismiss="modal" aria-label="Close" onclick="closeModal()"><i class="fa fa-times"></i></button>
+            <h6>Update Product</h6>
+        </div>
+        <a href="#" class="btn btnSubmitFormByJQuery btn-primary rounded-1 py-2" onclick="submitFormByJQuery('.submitFormByJQuery')">
+            <svg height="20" fill="#ffffff" viewBox="-6.5 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>save</title> <path d="M12.188 4.469v4.656h2.438l-4.875 5.875-4.875-5.875h2.563v-4.656h4.75zM16.313 12l2.844 4.5c0.156 0.375 0.344 1.094 0.344 1.531v8.656c0 0.469-0.375 0.813-0.813 0.813h-17.844c-0.469 0-0.844-0.344-0.844-0.813v-8.656c0-0.438 0.156-1.156 0.313-1.531l2.844-4.5c0.156-0.406 0.719-0.75 1.125-0.75h1.281l1.313 1.594h-2.625l-2.531 4.625c-0.031 0-0.031 0.031-0.031 0.063 0 0.063 0 0.094-0.031 0.125h16.156v-0.125c0-0.031-0.031-0.063-0.031-0.094l-2.531-4.594h-2.625l1.313-1.594h1.25c0.438 0 0.969 0.344 1.125 0.75zM7.469 21.031h4.594c0.406 0 0.781-0.375 0.781-0.813 0-0.406-0.375-0.781-0.781-0.781h-4.594c-0.438 0-0.813 0.375-0.813 0.781 0 0.438 0.375 0.813 0.813 0.813z"></path> </g></svg>
+            <span>Update</span>
+        </a>
+    </div>
+    <div class="modal-c-body-clickup-01">
+        <div class="container-fluid">
+            <form class="submitFormByJQuery" enctype="multipart/form-data" method="post" data-ajax="true" data-ajax-url="/Product/List/Update" data-ajax-method="post" data-ajax-failure="failedAjax" data-ajax-success="successAjax">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Id)
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "col-form-label required" })
+                            <div class="">
+                                @Html.TextBoxFor(f => f.Title, new { @class = "form-control", @placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "col-form-label required" })
+                            <div class="">
+                                @Html.TextBoxFor(f => f.Price, new { @class = "form-control", @placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-form-label required" })
+                            <div class="">
+                                @Html.TextAreaFor(f => f.Description, new { @class = "form-control", @placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-c-footer-clickup-01">
+        <div class="modal-c-footer-note-clickup-01">
+            <i class="fa fa-youtube-play modal-c-footer-note-icon-clickup-01"></i>
+            <p>
+                Click on the <a href="#">link</a> to get familiar with the function of the page
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="~/common/plugins/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/common/plugins/jquery-unobtrustive/js/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    failedAjax = function (response) {
+        //notify(response.Message, "error", "bottom-center");
+    };
+    successAjax = function (response) {
+        if (response.Result) {
+            closeModal();
+            $('#grid').data('kendoGrid').dataSource.read()
+        }
+        else {
+            //notify(response.Message, "error", "bottom-center");
+        }
+    };
+</script>

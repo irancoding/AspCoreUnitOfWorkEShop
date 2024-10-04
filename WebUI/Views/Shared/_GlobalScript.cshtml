@@ -1,0 +1,127 @@
+﻿@using Infrastructure.Utils.Extensions
+@using Domain.Models.Constants
+<script src="~/common/plugins/bootstrap/js/bootstrap5.3.2.bundle.min.js"></script>
+<script>
+    var size_old;
+    function showModal(title, html, size = undefined) {
+
+        $(".modal-dialog").removeClass(size_old);
+        if (size == undefined) {
+            size = 'md';
+        }
+
+        size = 'modal-' + size;
+        size_old = size;
+
+        $(".modal-dialog").addClass(size);
+
+        $("#commonModal .modal-title").html(title);
+        $("#commonModalBody").html(html);
+
+        var myModal = new bootstrap.Modal(document.getElementById("commonModal"), {});
+        myModal.show();
+        size = undefined;
+
+    }
+    function closeModal() {
+        $('#commonModal').modal('hide')
+    }
+
+    function showPopup(e, response) {
+
+        $("#popup_container").html(response);
+        var element_id = "#" + e.id;
+
+        $("#popup_container").css({
+            'position': 'absolute',
+            'left': $(element_id).offset().left,
+            'top': $(element_id).offset().top + $(element_id).height() + 5
+        }).show("slow");
+    }
+
+    function closePopup() {
+        $("#popup_container").hide();
+    }
+
+    $(document).ready(function () {
+        closePopup();
+    })
+    $(".closePopup").click(function () {
+        closePopup();
+    })
+
+
+    $.ajaxSetup({
+        beforeSend: function (xhr) {
+            closePopup();
+            $("#ajax-loading").removeClass("d-none");
+        },
+        complete: function (xhr) {
+            $("#ajax-loading").addClass("d-none");
+        }
+    });
+
+    $(".btn-sign-auth").click(function () {
+        $.ajax({
+            url: "/Auth/_Sign",
+            success: function (response) {
+                showModal('', response, 'lg');
+            }
+        })
+    })
+
+</script>
+@{
+    //If signed
+    if (User.Identity.IsAuthenticated)
+    {
+        <script>
+            $(".btn-get-start-in-home").click(function () {
+                location.href = "/Order/Service";
+            })
+        </script>
+    }
+    else
+    {
+        <script>
+            $(".btn-get-start-in-home").click(function () {
+                $.ajax({
+                    url: "/Auth/_Sign",
+                    success: function (response) {
+                        showModal('', response, 'lg');
+                    }
+                })
+            })
+        </script>
+    }
+}
+
+<script>
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');        
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function eraseCookie(name) {
+        document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+</script>
+

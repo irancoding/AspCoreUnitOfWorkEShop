@@ -1,0 +1,227 @@
+﻿@using Kendo.Mvc.UI
+@model Application.ViewModels.ProductReadVm
+@using Domain.Enum
+
+<script type="text/javascript">
+
+    var selectedIds;
+    function onChange(arg) {
+        selectedIds = this.selectedKeyNames().join(", ");        
+        $("#payload").val(selectedIds);
+    }
+
+    function onDataBound(e) {
+        $("#pager").kendoPager({
+            messages: {
+                itemsPerPage: "Ite"
+            }
+        });
+    }
+</script>
+
+@Html.Partial("~/Areas/Product/Views/List/Partials/_KendoTemplate.cshtml")
+
+<div class="container">
+    <div class="k-rtl">
+
+        @(Html.Kendo().Grid<Application.ViewModels.ProductVm>()
+            .Name("grid")
+            .ToolBar(toolbar =>
+            {
+                toolbar.Search().Text("Search ...");
+            })
+            .Search(s =>
+            {
+                //s.Field(o => o.Amount, "contains");
+                //s.Field(o => o.Status, "contains");
+                //s.Field(o => o.ShipCity, "gt");
+                //s.Field(o => o.ShipCity, "eq");
+                //s.Field(o => o.ShipCity, "contains");
+            })
+            .Filterable()
+            .Columns(columns =>
+            {
+                //============================Model columns============================
+
+                //columns.Bound(p => p.Id).Hidden();
+                columns.Select().Width(40);
+                //columns.Bound(p => p.Id).Title("Title").ClientTemplateId("Vehicle-template");
+                columns.Bound(p => p.Title).Title("Title");
+                //columns.Bound(p => p.Id).Title("Time").ClientTemplateId("Time-template");
+                //columns.Bound(p => p.Id).Title("Amoumt").ClientTemplateId("Amount-template");
+                columns.Bound(p => p.Id).Title("Operation")
+                .HeaderHtmlAttributes(new { style = "text-align: center; justify-content: center" })
+                .Width(200).ClientTemplateId("operation-template")
+                               .HtmlAttributes(new { @class = "text-center" });
+
+                //columns.Bound(p => p.FileName).Hidden();
+
+                //============================command Template============================
+                //columns.Bound(p => p.Name).Filterable(false);//غیر قابل ویرایش
+
+                //columns.Bound(p => p.PersonnelCode).Width(120);
+                //columns.Bound(p => p.CustomerCode).Width(140);
+                //columns.Bound(p => p.NationalCode).Width(140);
+                //columns.Bound(p => p.Phone).Width(140);
+                //columns.Bound(p => p.Mobile).Width(140);
+                //columns.Bound(p => p.Province).Width(140);
+                //columns.Bound(p => p.City).Width(140);
+                //columns.Bound(p => p.Address).Width(200);
+
+                //columns.Bound(p => p.Gender).Width(200);
+                //columns.Bound(p => p.Email).Width(200);
+                //columns.Bound(p => p.DateBirth).Format("{0:yyyy/MM/dd}").Width(130); ;
+                //columns.Bound(p => p.DateRegister).Format("{0:yyyy/MM/dd}").Width(130); ;
+
+
+                //columns.Bound(p => p.OrderDate).Format("{0:MM/dd/yyyy}");
+                //columns.Bound(p => p.DecimalNumber).Format("{0:c}");//دورقم اعشار پولی
+                //columns.Bound(p => p.DecimalNumber).Format("{0:c}");//صفر اعشار پولی
+                //columns.Bound(p => p.DecimalNumber).Format("{0:n3}").Title("حقوق");//صحیح پولی
+
+
+                //============================EditorTemplate columns============================
+
+                //columns.Bound(p => p.IsActive).ClientTemplate("# if(IsActive==true) {# <span class='label label-primary'>فعال</span> #} else {# <span class='label label-inverse-primary'>غیر فعال</span> #}#").EditorTemplateName("Boolean").Title("وضعیت");
+                //columns.Bound(p => p.FilePic).EditorTemplateName("FileUpload").Title("فایل");
+                //columns.Bound(p => p.DateRegister).EditorTemplateName("DateTime").ClientTemplate("# DateRegister #").Title("تاریخ").Format("{0:MM/dd/yyyy}");
+                //columns.Bound(p => p.FilePic).ClientTemplate("<input type='text' name='FilePic' value='#= FilePic #'/>").EditorTemplateName("IdEditor");
+                //columns.Bound(e => e.FilePic).EditorTemplateName("ResumeFileUrl").Title("Resume").ClientTemplate("#:Filename#");
+                //columns.Bound(p => p.Id).ClientTemplate("<input type='text'/><img src='/Content/Images/image.gif' onclick= 'OpenPopup(this)' />").EditorTemplateName("IdEditor");
+                //columns.Bound(property => property.Name).Width(38).EditorTemplateName("CompaniesList").Title("NeatProperty").ClientTemplate("#:Name#"); ;
+                //columns.Bound(p => p.Name).EditorTemplateName("CompaniesList").Title("NeatProperty").ClientTemplate("#:Name#");
+            })
+                    //.ToolBar(toolBar =>
+                    //{
+                    //    //toolBar.Create().Text("جدید");
+                    //    //toolBar.Save().SaveText("ذخیره تغییرات").CancelText("انصراف");
+                    //    toolBar.Excel().Text("");
+                    //    toolBar.Pdf().Text("");
+                    //    toolBar.Search().Text("جستجو ...");
+                    //    toolBar.ClientTemplate(
+                    //        "<div class=\"d-flex\"" +
+                    //            "<div class=\"command-buttons\">" +
+                    //                "<a onclick=\"_LoadPartial('UserAccountHRContract')\"  href='javascript:void(0)' class='m-l-10 k-button k-button-md k-button-rectangle k-rounded-md k-button-solid k-button-solid-warning'>جدید</a>" +
+                    //                "<a onclick=\"_LoadPartial('UserAccountHRContractFunction')\"  href='javascript:void(0)' class='m-l-10 k-button k-button-sm k-button-rectangle k-rounded-md k-button-solid k-button-solid-base'>سایر</a>" +
+                    //                "<a onclick=\"_LoadPartial('UserAccountHRContractSalaryCalculation')\"  href='javascript:void(0)' class='m-l-10 k-button k-button-sm k-button-rectangle k-rounded-md k-button-solid k-button-solid-base'> سایر</a>" +
+                    //                "<div class='btn-group' role='group' data-toggle='tooltip' data-placement='top' title='' data-original-title='.btn-xlg'>" +
+                    //            "</div>"+
+                    //            "<div class=\"command-buttons\">" +
+                    //            "</div>" +
+                    //        "</div>"
+
+                    //        );
+                    //})
+                    //.Events(ev => ev.Save(@"function(e){alert('1')}"))
+                    //.Editable(editable => editable.Mode(GridEditMode.InCell))
+                    .Pageable()
+                    .Pageable(pager =>
+                                pager.PageSizes(new int[] { 5, 10, 20, 50, 100, 1000 })
+                                .Messages(messages => messages.Display("Display {0} To {1}. Total Count: {2}"))
+                                .Messages(messages => messages.ItemsPerPage("Rows Per Page"))
+                                .Messages(messages => messages.First("First"))
+                                .Messages(messages => messages.First("Last"))
+                    )
+                    //.Sortable()
+                    .Scrollable()
+                    .Scrollable(a => a.Height("auto"))
+                    //.NoRecords("هیچ داده ای وارد نشده است !")
+                    //.Scrollable(scrollable => scrollable.Virtual(true))
+                    //.Scrollable(sc => sc.Endless(true))
+                    //.ClientDetailTemplateId("template")
+                    .Events(ev => ev.DataBound("onDataBound").Change("onChange"))
+                    //.Filterable()
+                    .Resizable(resize => resize.Columns(true))
+                    //.EnableCustomBinding(true)
+                    .Pageable(m => m.PageSizes(new int[] { 10, 20, 50, 100,1000 }))
+                    //.Groupable()
+                    //.Groupable(g => g.Messages(messages => messages.Empty("<small>جهت گروه بندی فیلدهای موردنظر را به اینجا بکشید</small>")))
+                    //.Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                    .HtmlAttributes(new { style = "height:400px;" })
+                    //.Scrollable(sc => sc.Endless(true))
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Batch(true)
+                        .ServerOperation(false)
+                        //.Events(events => events.Error("error_handler"))
+                        .Model(model =>
+                        {
+                            model.Id(p => p.Id);
+                            model.Field(e => e.Id);
+                            //model.Field(e => e.Name).Editable(false);
+                        })
+                        .PageSize(5)
+                        .Read(read => read.Action("ReadGrid", "List", new { Name = Model.Id, Area = "Product" }))
+                        .Create(create => create.Action("Create", "List", new { Area = "Product" }))
+                        .Update(update => update.Action("Update", "List", new { Area = "Product" }))
+                        .Destroy(destroy => destroy.Action("Delete", "List", new { Area = "Product" }))
+                    )
+
+    )
+
+    </div>
+</div>
+<input type="hidden" name="payload" id="payload" />
+
+<!-- Product -->
+<script>
+    function _Create_Product(partial, payload) {
+        var url;
+
+        switch (partial) {
+            case "@ProductPartialEnum.Create":
+                url = "/Product/List/_Create?Partial=" + "@ProductPartialEnum.Create";
+                break;
+            default:
+        }
+
+        $.ajax({
+            url: url,
+            success: function (response) {
+                showModal('', response,'md');
+            }
+        })
+    }
+
+    function _Update_Product(partial, payload) {
+        var url;
+        switch (partial) {
+            case "@ProductPartialEnum.Update":
+                url = "/Product/List/_Update?Partial=" + "@ProductPartialEnum.Update" + "&Id=" + payload;
+                break;
+            default:
+        }
+
+        $.ajax({
+            url: url,
+            success: function (response) {
+                showModal('', response,'md');
+            }
+        })
+    }
+
+    function _Delete_Product(partial, payload) {
+        var url;
+
+        switch (partial) {
+            case "@ProductPartialEnum.Delete":
+                url = "/Product/List/_Delete?Partial=" + "@ProductPartialEnum.Delete" + "&Id=" + payload;
+                break;
+            case "@ProductPartialEnum.Delete_Many":
+                payload = $("#payload").val();
+                if (payload == undefined || payload == '') {
+                    alert("No Rows Selected !");
+                    return;
+                }
+                url = "/Product/List/_Delete?Partial=" + "@ProductPartialEnum.Delete_Many" + "&Payload=" + payload;
+                break;
+        }
+
+        $.ajax({
+            url: url,
+            success: function (response) {
+                showModal('', response,'md');
+            }
+        })
+    }
+</script>

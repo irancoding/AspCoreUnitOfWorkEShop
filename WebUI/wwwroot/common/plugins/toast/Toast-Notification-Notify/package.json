@@ -1,0 +1,41 @@
+{
+  "name": "notify",
+  "version": "0.0.1",
+  "description": "A light-weight yet customizable toast plugin for jQuery",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "start": "webpack-dev-server --history-api-fallback --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digitalify/notify.git"
+  },
+  "keywords": [],
+  "author": "Mehdi Dehghani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/digitalify/notify/issues"
+  },
+  "homepage": "https://github.com/digitalify/notify#readme",
+  "devDependencies": {
+    "autoprefixer": "^8.6.3",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "mini-css-extract-plugin": "^0.4.2",
+    "node-sass": "^4.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "uglifyjs-webpack-plugin": "^2.0.0",
+    "unminified-webpack-plugin": "^2.0.0",
+    "webpack": "^4.19.0",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
+  }
+}

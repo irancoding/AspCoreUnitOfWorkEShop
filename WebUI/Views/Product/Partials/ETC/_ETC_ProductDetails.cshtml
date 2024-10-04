@@ -1,0 +1,57 @@
+﻿@model Application.ViewModels.ProductReadVm
+@using Domain.Enum
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="header d-flex justify-content-center flex-column align-items-center p-5">
+                <div class="d-flex gap-3">
+                    <svg height="40" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 7.184C16 3.14 12.86 0 9 0S2 3.14 2 7c-1.163.597-2 1.696-2 3v2a3 3 0 0 0 3 3h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1 5 5 0 0 1 10 0 1 1 0 0 0-1 1v6a1 1 0 0 0 1 1v1h-2.592c-.206-.581-.756-1-1.408-1H8a1.5 1.5 0 0 0 0 3h6a2 2 0 0 0 2-2v-1.183A2.992 2.992 0 0 0 18 12v-2a2.99 2.99 0 0 0-2-2.816L-7 62" fill="#494c4e" fill-rule="evenodd"></path> </g></svg>
+                    <h1>Product Details</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-c">
+                <form class="submitFormByJQuery" enctype="multipart/form-data" method="post" data-ajax="true" data-ajax-url="/Product/SaveProductToSession" data-ajax-method="post" data-ajax-failure="failedAjax" data-ajax-success="successAjax">
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center align-items-center flex-column my-2">
+                            <h3 class="text">
+                                @Model.ProductVm.Product.Price
+                            </h3>
+                            <button type="button" onclick="SaveProductToSession()" class="btn btn-primary my-4 px-5">Add To Card</button>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.ProductVm.Product.Id)
+                    <input type="hidden" name="Payload" id="Payload" value="@Model.ProductVm.Product.Id" />
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div>
+                <h4>@Model.ProductVm.Product.Title</h4>
+                <p>@Model.ProductVm.Product.Description</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    failedAjax = function (response) {
+        //notify(response.Message, "error", "bottom-center");
+    };
+    successAjax = function (response) {
+        if (response.Result) {
+            location.href = "/Product/Card";
+        }
+        else {
+            //notify(response.Message, "error", "bottom-center");
+        }
+    };
+</script>
+<script>
+    function SaveProductToSession() {
+        $(".submitFormByJQuery").submit();
+    }
+</script>

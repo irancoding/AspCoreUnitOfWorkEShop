@@ -1,0 +1,123 @@
+﻿@model Application.ViewModels.LayoutVm
+
+<header class="page-header">
+    <nav class="page-navigation">
+        <div class="logo d-flex align-items-center gap-3">
+            @*<a href="/"><img src="~/common/images/office/01.png" alt=""></a>*@
+            <a href="/" class=" text-dark">LOGO PLACE</a>
+            <a href="/Product/Card" class="btn btn-outline-dark">My Card</a>
+        </div>
+        <div class="links">
+            @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole(Domain.Models.Constants.GlobalRoles.Admin))
+                    {
+                        <a href="@Url.Action("Index", "Dashboard", new { Area = "Admin" })" class="btn btn-primary px-5">
+                            Dashboard
+                            <svg fill="#fff" width="10" height="14" viewBox="0 0 9 7"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M4.628.616a.5.5 0 1 0-.64.768L6.203 3.23H.5a.5.5 0 0 0 0 1h5.612L3.988 6a.5.5 0 1 0 .64.769l3.23-2.693a.5.5 0 0 0 0-.768L4.628.616z">
+                                </path>
+                            </svg>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index", "Dashboard", new { Area = "User" })" class="btn btn-primary px-5">
+                            Dashboard
+                            <svg fill="#fff" width="10" height="14" viewBox="0 0 9 7"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M4.628.616a.5.5 0 1 0-.64.768L6.203 3.23H.5a.5.5 0 0 0 0 1h5.612L3.988 6a.5.5 0 1 0 .64.769l3.23-2.693a.5.5 0 0 0 0-.768L4.628.616z">
+                                </path>
+                            </svg>
+                        </a>
+                    }
+                }
+                else
+                {
+                    <a href="#" class="btn btn-sign-auth">
+                        <span>Sign Up</span>
+                        <svg height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">  <path d="M12.1992 12C14.9606 12 17.1992 9.76142 17.1992 7C17.1992 4.23858 14.9606 2 12.1992 2C9.43779 2 7.19922 4.23858 7.19922 7C7.19922 9.76142 9.43779 12 12.1992 12Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>  <path d="M3 22C3.57038 20.0332 4.74795 18.2971 6.36438 17.0399C7.98081 15.7827 9.95335 15.0687 12 15" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>  <path d="M19 22V14" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>  <path d="M15 18H23" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>  </g></svg>
+                    </a>
+                    <a href="#" class="btn btn-sign-auth">
+                        <span>Sign In</span>
+                        <svg height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.1992 12C14.9606 12 17.1992 9.76142 17.1992 7C17.1992 4.23858 14.9606 2 12.1992 2C9.43779 2 7.19922 4.23858 7.19922 7C7.19922 9.76142 9.43779 12 12.1992 12Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M3 22C3.57038 20.0332 4.74796 18.2971 6.3644 17.0399C7.98083 15.7827 9.95335 15.0687 12 15C16.12 15 19.63 17.91 21 22" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </a>
+                }
+            }
+        </div>
+    </nav>
+    <div class="hero hero-home" style="background-image: url(/site/images/banner/bg-hero.png);background-repeat: no-repeat;background-size: cover;">
+        <div class="hero-header">
+            <h1 class="title">E-Commerce App</h1>
+            <div class="sub-title">
+                <div class="d-flex gap-2">
+                    <span class="badge bg-primary">ASP Core 7</span>
+                    <span class="badge bg-primary">EF Core</span>
+                    <span class="badge bg-primary">Telerik</span>
+                    <span class="badge bg-primary">HTML</span>
+                </div>
+            </div>
+            <h5 class="sub-title">
+                Lorem ipsum dolor sit amet Lorem ipsum
+                <br />
+                consectetur adipiscing elit
+            </h5>
+        </div>
+        <div class="hero-tab">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                            type="button" role="tab" aria-controls="home" aria-selected="true">
+                        <div class="nav-link-icon">
+                            <svg fill="#000000" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Phabricator icon</title><path d="M10.076 7.644c-.408.165-.48.196-.488.213-.014.034-.01.77.006 1.116l.015.295-.223.22-.223.219-.192-.005a26.198 26.198 0 0 0-1.125.003c-.127.012-.122.01-.15.075-.12.286-.37.91-.37.922 0 .008.016.035.034.06.043.059.459.472.69.688l.24.224.057.052.002.313.003.313-.383.384c-.38.379-.519.525-.575.606l-.028.042.21.495c.2.47.213.496.235.502.07.02.287.024.84.02l.578-.005.224.226.226.226v.328c0 .503.018.96.041 1.069l.008.037.495.21c.272.114.499.208.504.208.041 0 .556-.508.926-.914l.07-.079.321.005.32.005.392.39c.43.425.63.61.664.61.004 0 .228-.089.496-.196.413-.165.489-.198.495-.214.022-.053.019-.582-.006-1.118l-.014-.292.223-.221.223-.222.268.007c.33.009 1.03.003 1.108-.009a.195.195 0 0 0 .065-.019c.014-.014.396-.955.396-.974a.273.273 0 0 0-.048-.074c-.06-.074-.452-.462-.693-.686l-.231-.215-.047-.045-.004-.314-.004-.314.364-.362c.368-.366.522-.53.588-.621l.036-.05-.211-.493a7.793 7.793 0 0 0-.223-.5.6.6 0 0 0-.104-.017 19.066 19.066 0 0 0-1.136-.003l-.18.006-.23-.225-.23-.226v-.329c0-.526-.019-.978-.043-1.075l-.01-.037-.487-.207a13.455 13.455 0 0 0-.505-.207c-.022 0-.12.082-.244.204-.184.182-.411.415-.586.602l-.175.186-.315-.005-.315-.005-.33-.329c-.487-.483-.692-.67-.738-.668-.01 0-.234.088-.497.194zm2.063 2.938c.69.09 1.237.639 1.318 1.319.015.126.005.364-.02.483a1.541 1.541 0 0 1-1.301 1.204c-.087.013-.32.013-.408 0a1.537 1.537 0 0 1-1.219-.941 1.516 1.516 0 0 1 .893-1.984 1.68 1.68 0 0 1 .32-.08c.102-.015.305-.015.417 0zm-.551-7.91a9.29 9.29 0 0 0-3.033.652 9.226 9.226 0 0 0-2.93 1.873c-.129.122-4.872 4.884-4.941 4.96a2.813 2.813 0 0 0-.674 1.549c-.013.11-.013.474 0 .585a2.79 2.79 0 0 0 .602 1.46c.09.113.14.163 3.153 3.188 1.538 1.544 1.764 1.768 2.044 2.021a9.261 9.261 0 0 0 6.871 2.349 9.225 9.225 0 0 0 5.67-2.489c.175-.162 4.881-4.886 4.973-4.991.361-.412.59-.93.663-1.502.019-.157.019-.5-.001-.657a2.79 2.79 0 0 0-.662-1.502 779.59 779.59 0 0 0-4.953-4.967 9.228 9.228 0 0 0-4.145-2.266 9.499 9.499 0 0 0-1.68-.256 15.207 15.207 0 0 0-.957-.008zm.82 1.928c.754.04 1.507.2 2.253.484.272.103.716.316.995.476a7.445 7.445 0 0 1 3.235 3.774 7.45 7.45 0 0 1 .26 4.513 7.395 7.395 0 0 1-6.443 5.53c-.34.032-.838.042-1.144.02-1.744-.116-3.3-.781-4.57-1.953a7.412 7.412 0 0 1-2.32-6.37 7.38 7.38 0 0 1 1.56-3.704 7.374 7.374 0 0 1 3.532-2.436A7.373 7.373 0 0 1 12.41 4.6z"></path></g></svg>
+                        </div>
+                        <div class="nav-link-text">
+                            <h1 class="title">
+                                Lorem ipsum
+                            </h1>
+                            <h4 class="sub-title">
+                                Lorem ipsum Lorem ipsum
+                            </h4>
+                        </div>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                            type="button" role="tab" aria-controls="profile" aria-selected="false">
+                        <div class="nav-link-icon">
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>newspaper-solid</title> <g id="Layer_2" data-name="Layer 2"> <g id="invisible_box" data-name="invisible box"> <rect width="48" height="48" fill="none"></rect> <rect width="48" height="48" fill="none"></rect> </g> <g id="icons_Q2" data-name="icons Q2"> <path d="M44,5H12a2,2,0,0,0-2,2V17H4a2,2,0,0,0-2,2V37a6,6,0,0,0,6,6H40a6,6,0,0,0,6-6V7A2,2,0,0,0,44,5ZM10,37a2,2,0,0,1-4,0V21h4Zm8-21.2A1.8,1.8,0,0,1,19.8,14h4.4A1.8,1.8,0,0,1,26,15.8v8.4A1.8,1.8,0,0,1,24.2,26H19.8A1.8,1.8,0,0,1,18,24.2ZM37.4,33.4A2,2,0,0,1,36,34H20a2,2,0,0,1-2-2,2.1,2.1,0,0,1,2-2H36a2,2,0,0,1,2,2A2,2,0,0,1,37.4,33.4Zm0-8A2,2,0,0,1,36,26H32a2,2,0,0,1-2-2,2.1,2.1,0,0,1,2-2h4a2,2,0,0,1,2,2A2,2,0,0,1,37.4,25.4Zm0-8A2,2,0,0,1,36,18H32a2,2,0,0,1-2-2,2.1,2.1,0,0,1,2-2h4a2,2,0,0,1,2,2A2,2,0,0,1,37.4,17.4Z"></path> </g> </g> </g></svg>
+                        </div>
+                        <div class="nav-link-text">
+                            <h1 class="title">
+                                Lorem ipsum
+                            </h1>
+                            <h4 class="sub-title">
+                                Lorem ipsum Lorem ipsum
+                            </h4>
+                        </div>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                            type="button" role="tab" aria-controls="contact" aria-selected="false">
+                        <div class="nav-link-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 2H6C4.34 2 3 3.33 3 4.97V15.88C3 17.52 4.34 18.85 6 18.85H6.76C7.56 18.85 8.32 19.16 8.88 19.72L10.59 21.41C11.37 22.18 12.64 22.18 13.42 21.41L15.13 19.72C15.69 19.16 16.46 18.85 17.25 18.85H18C19.66 18.85 21 17.52 21 15.88V4.97C21 3.33 19.66 2 18 2ZM10.38 13.01C10.79 13.01 11.13 13.35 11.13 13.76C11.13 14.17 10.79 14.51 10.38 14.51H7.7C7.26 14.51 6.85 14.3 6.59 13.94C6.34 13.6 6.28 13.18 6.4 12.78C6.75 11.71 7.61 11.13 8.37 10.61C9.17 10.07 9.62 9.73 9.62 9.15C9.62 8.63 9.2 8.21 8.68 8.21C8.16 8.21 7.75 8.64 7.75 9.16C7.75 9.57 7.41 9.91 7 9.91C6.59 9.91 6.25 9.57 6.25 9.16C6.25 7.82 7.34 6.72 8.69 6.72C10.04 6.72 11.13 7.81 11.13 9.16C11.13 10.57 10.07 11.29 9.22 11.87C8.69 12.23 8.19 12.57 7.94 13.02H10.38V13.01ZM17 13.08H16.79V13.77C16.79 14.18 16.45 14.52 16.04 14.52C15.63 14.52 15.29 14.18 15.29 13.77V13.08H13.33C13.33 13.08 13.33 13.08 13.32 13.08C12.83 13.08 12.38 12.82 12.13 12.4C11.88 11.97 11.88 11.44 12.13 11.02C12.81 9.85 13.6 8.52 14.32 7.36C14.64 6.85 15.25 6.62 15.82 6.78C16.39 6.95 16.79 7.47 16.78 8.07V11.59H17C17.41 11.59 17.75 11.93 17.75 12.34C17.75 12.75 17.41 13.08 17 13.08Z"></path> <path d="M15.2891 11.5806V8.64062C14.6991 9.60062 14.0891 10.6306 13.5391 11.5706H15.2891V11.5806Z"></path> </g></svg>
+                        </div>
+                        <div class="nav-link-text">
+                            <h1 class="title">
+                                Lorem ipsum
+                            </h1>
+                            <h4 class="sub-title">
+                                Lorem ipsum Lorem ipsum
+                            </h4>
+                        </div>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

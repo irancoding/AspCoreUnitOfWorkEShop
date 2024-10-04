@@ -1,0 +1,11 @@
+@using Domain.Models.Constants
+@{
+    if (User.IsInRole(GlobalRoles.Admin))
+    {
+        Layout = "~/Views/Shared/Layouts/Panels/Admin/_Layout.cshtml";
+    }
+    else if (User.IsInRole(GlobalRoles.User))
+    {
+        Layout = "~/Views/Shared/Layouts/Panels/User/_Layout.cshtml";
+    }
+}

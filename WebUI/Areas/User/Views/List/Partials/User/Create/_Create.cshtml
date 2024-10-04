@@ -1,0 +1,600 @@
+﻿@model Application.ViewModels.UserVm
+@using Kendo.Mvc.UI
+<script src="~/js/plus/rider-html-pro/assets/js/scripts.bundle.js"></script>
+<style>
+    .select2-container--default .select2-selection--multiple {
+        border: 1px solid #ececec !important;
+    }
+</style>
+<form class="form form_SubmitButtonInTop" enctype="multipart/form-data" method="post" data-ajax="true" data-ajax-url="/User/List/Update" data-ajax-method="post" data-ajax-failure="failedAjax" data-ajax-success="successAjax">
+    <div class="modal-card-style">
+        <div class="modal-c-header">
+            <div class="d-flex justify-content-between p-3 border-bottom">
+                <div class="d-flex align-items-center">
+                    <a class="h-30px w-30px border rounded-1 border bg-white d-flex justify-content-center align-items-center" href="javascript:void(0)" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <h6 class="mx-2">تعریف کاربر جدید</h6>
+                </div>
+                <button type="button" class="btn btn-primary rounded-1 py-2" onclick="submit_Form_Create_FBForm_FormBuilder()">
+                    <svg height="20" fill="#ffffff" viewBox="-6.5 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>save</title> <path d="M12.188 4.469v4.656h2.438l-4.875 5.875-4.875-5.875h2.563v-4.656h4.75zM16.313 12l2.844 4.5c0.156 0.375 0.344 1.094 0.344 1.531v8.656c0 0.469-0.375 0.813-0.813 0.813h-17.844c-0.469 0-0.844-0.344-0.844-0.813v-8.656c0-0.438 0.156-1.156 0.313-1.531l2.844-4.5c0.156-0.406 0.719-0.75 1.125-0.75h1.281l1.313 1.594h-2.625l-2.531 4.625c-0.031 0-0.031 0.031-0.031 0.063 0 0.063 0 0.094-0.031 0.125h16.156v-0.125c0-0.031-0.031-0.063-0.031-0.094l-2.531-4.594h-2.625l1.313-1.594h1.25c0.438 0 0.969 0.344 1.125 0.75zM7.469 21.031h4.594c0.406 0 0.781-0.375 0.781-0.813 0-0.406-0.375-0.781-0.781-0.781h-4.594c-0.438 0-0.813 0.375-0.813 0.781 0 0.438 0.375 0.813 0.813 0.813z"></path> </g></svg>
+                    <span>ثبت</span>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body-c px-3">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12 py-10">
+                            <div class="d-flex justify-content-center">
+                                <div>
+                                    <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('/new-theme/images/people/') ">
+                                        <!--begin::Preview existing avatar-->
+                                        @{
+                                            if (string.IsNullOrEmpty(Model.FileAvatarStr))
+                                            {
+                                                <div class="image-input-wrapper w-125px h-125px" style="background-image: url('/new-theme/images/people/')"></div>
+                                            }
+                                            else
+                                            {
+                                                <div class="image-input-wrapper w-125px h-125px" style="background-image: url(/uploads/@Model.FileAvatarStr)"></div>
+                                            }
+                                        }
+                                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar" data-bs-original-title="Change avatar" data-kt-initialized="1">
+                                            <i class="fa fa-folder"></i>
+                                            <input type="file" name="FileAvatar" accept=".png, .jpg, .jpeg">
+                                            <input type="hidden" name="avatar_remove" value="0">
+                                        </label>
+                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" aria-label="Cancel avatar" data-bs-original-title="Cancel avatar" data-kt-initialized="1">
+                                            <i class="fa fa-trash"></i>
+                                        </span>
+                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" aria-label="Remove avatar" data-bs-original-title="Remove avatar" data-kt-initialized="1">
+                                            <i class="fa fa-trash"></i>
+                                        </span>
+                                    </div>
+                                    <div class="form-text">فایل های مجاز: png, jpg, jpeg.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p-5">
+                        <div class="col-md-12 d-none">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "col-form-label" })
+                                <div class="">
+                                    @Html.TextBoxFor(f => f.Code, new { @class = "form-control", @readonly = "readonly", @placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "col-form-label" })
+                                <div class="">
+                                    @Html.TextBoxFor(f => f.FullName, new { @class = "form-control", @placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "col-form-label " })
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(f => f.UserName, new { @class = "form-control", @placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "mb-2" })
+                                <div class="">
+                                    @Html.TextBoxFor(f => f.Email, new { @class = "form-control", @placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-form-label" })
+                                <div class="input-group">
+                                    @Html.TextBoxFor(f => f.Password, new { @id = "Password", @type = "Password", @class = "form-control", @placeholder = "" })
+                                    <a id="viewPassword" href="javascript:void(0)" class="btn btn-sm p-1 px-3 btn-primary input-group-addon"><i class="fa fa-eye"></i></a>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <ul class="nav nav-tabs p-5 pt-10" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">مشخصات</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">سطوح دسترسی</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active py-5 pt-10" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        @*<div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Symbol, htmlAttributes: new { @class = "col-form-label" })
+                                                <div class="">
+                                                    @Html.TextBoxFor(f => f.Symbol, new { @class = "form-control", @maxlength = "10", @placeholder = "" })
+                                                    @Html.ValidationMessageFor(model => model.Symbol, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                        @*<div class="col-md-12" id="ListOrganizationId">
+                                            <div class="">
+                                                <label class="col-form-label">سمت کاربری</label>
+                                                <select class="js-example-basic-single form-control dir-rtl" name="ListOrganizationId" id="">
+                                                    @{
+                                                        foreach (var item in Model.ListOrganization)
+                                                        {
+                                                            <option value="@item.Id" data-image="/uploads/@(item.FileLogo)">@item.Title</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>*@
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+                                                <label class="col-form-label">تاریخ تولد</label>
+                                                <div class="">
+                                                    <div class="d-flex">
+                                                        <div class="flex-grow-1 ms-1">
+                                                            <select class="form-control" name="Day">
+                                                                @{
+                                                                    if (!string.IsNullOrWhiteSpace(Model.Day))
+                                                                    {
+                                                                        <option selected value="@Model.Day">@Model.Day</option>
+                                                                    }
+                                                                }
+                                                                <option value="01">01</option>
+                                                                <option value="02">02</option>
+                                                                <option value="03">03</option>
+                                                                <option value="04">04</option>
+                                                                <option value="05">05</option>
+                                                                <option value="06">06</option>
+                                                                <option value="07">07</option>
+                                                                <option value="08">08</option>
+                                                                <option value="09">09</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                                <option value="13">13</option>
+                                                                <option value="14">14</option>
+                                                                <option value="15">15</option>
+                                                                <option value="16">16</option>
+                                                                <option value="17">17</option>
+                                                                <option value="18">18</option>
+                                                                <option value="19">19</option>
+                                                                <option value="20">20</option>
+                                                                <option value="21">21</option>
+                                                                <option value="22">22</option>
+                                                                <option value="23">23</option>
+                                                                <option value="24">24</option>
+                                                                <option value="25">25</option>
+                                                                <option value="26">26</option>
+                                                                <option value="27">27</option>
+                                                                <option value="28">28</option>
+                                                                <option value="29">29</option>
+                                                                <option value="30">30</option>
+                                                                <option value="31">31</option>
+                                                            </select>
+                                                            @Html.ValidationMessageFor(model => model.Day, "", new { @class = "text-danger" })
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-1">
+                                                            <select class="form-control" name="Month">
+                                                                @{
+                                                                    if (!string.IsNullOrWhiteSpace(Model.Month))
+                                                                    {
+                                                                        <option selected value="@Model.Month">@Model.Month</option>
+                                                                    }
+                                                                }
+                                                                <option value="01">01</option>
+                                                                <option value="02">02</option>
+                                                                <option value="03">03</option>
+                                                                <option value="04">04</option>
+                                                                <option value="05">05</option>
+                                                                <option value="06">06</option>
+                                                                <option value="07">07</option>
+                                                                <option value="08">08</option>
+                                                                <option value="09">09</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                            </select>
+                                                            @Html.ValidationMessageFor(model => model.Month, "", new { @class = "text-danger" })
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-1">
+                                                            <select class="form-control" name="Year">
+                                                                @{
+                                                                    for (int i = 1300; i < 1400; i++)
+                                                                    {
+                                                                        if (Model.Year == i.ToString())
+                                                                        {
+                                                                            <option selected value="@i">@i</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option value="@i">@i</option>
+                                                                        }
+                                                                    }
+                                                                }
+                                                            </select>
+                                                            @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "col-form-label" })
+                                                <div class="">
+                                                    @Html.TextBoxFor(f => f.MobileNumber, new { @class = "form-control", @placeholder = "" })
+                                                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-md-12">
+                                            <div class="form-group d-flex my-3">
+                                                <div class="">
+                                                    <input @(Model.Status == Domain.Enum.EnumUserStatus.Active ? "checked" : "") type="checkbox" name="Status" value="@Domain.Enum.EnumUserStatus.Active" />
+                                                </div>
+                                                <label class="me-2">فعال</label>
+                                            </div>
+                                        </div>*@
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="">
+                                                <div class="d-flex align-items-center">
+                                                    <h6 class="mx-3">نوع کاربر</h6>
+                                                </div>
+                                                <div class="px-5 py-5">
+                                                    @{
+                                                        foreach (var item in Infrastructure.Utils.EnumUtils.GetValues<Domain.Enum.EnumRoleMain>())
+                                                        {
+                                                            <div class="form-group mb-3">
+                                                                @{
+                                                                    if (item == Domain.Enum.EnumRoleMain.Admin)
+                                                                    {
+                                                                        <input onchange="checkAll(this,'permissions-all',true)" type="radio" name="UserType" value="@item" />
+                                                                        <label class="me-2">@Infrastructure.Utils.EnumUtils.GetDescription(item)</label>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input @(item == Domain.Enum.EnumRoleMain.User ? "checked" : "") onchange="checkAll(this,'permissions-all',false)" type="radio" name="UserType" value="@item" />
+                                                                        <label class="me-2">@Infrastructure.Utils.EnumUtils.GetDescription(item)</label>
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="d-flex align-items-center">
+                                                <h6 class="mx-3">جنسیت</h6>
+                                            </div>
+                                            <div class="px-5 py-5" dir="rtl">
+                                                <div class="form-group mb-3">
+                                                    @Html.RadioButtonFor(f => f.Gender, "true", new { @class = "", @placeholder = "", @checked = "checked" })
+                                                    <label>مرد</label>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    @Html.RadioButtonFor(f => f.Gender, "false", new { @class = "", @placeholder = "" })
+                                                    <label>خانم</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="d-flex align-items-center">
+                                                <h6 class="mx-3">تصویر امضا</h6>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div>
+                                                    <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('~/plus/images/icons/user-avatar.png') ">
+                                                        @{
+                                                            if (string.IsNullOrEmpty(Model.FileSignatureStr))
+                                                            {
+                                                                <div class="image-input-wrapper w-125px h-125px" style="background-image: url('/new-theme/images/people/')"></div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="image-input-wrapper w-125px h-125px" style="background-image: url(/uploads/@Model.FileSignatureStr)"></div>
+                                                            }
+                                                        }
+                                                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar" data-bs-original-title="Change avatar" data-kt-initialized="1">
+                                                            <i class="fa fa-folder"></i>
+                                                            <input type="file" name="FileSignature" accept=".png, .jpg, .jpeg">
+                                                            <input type="hidden" name="signature_remove" value="0">
+                                                        </label>
+                                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" aria-label="Cancel avatar" data-bs-original-title="Cancel avatar" data-kt-initialized="1">
+                                                            <i class="fa fa-trash"></i>
+                                                        </span>
+                                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" aria-label="Remove avatar" data-bs-original-title="Remove avatar" data-kt-initialized="1">
+                                                            <i class="fa fa-trash"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-text">فایل های مجاز: png, jpg, jpeg.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade py-10 px-5 permissions" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="">
+                            <div class="separator separator-dashed mb-5"></div>
+                            <div id="permissions-all">
+                                <div class="d-flex align-items-center justify-content-between mb-1" style="background-color: #eee; padding: 12px 15px; border-radius: 9px;">
+                                    <h6 class="">سطوح دسترسی</h6>
+                                    <div class="d-flex align-items-center">
+                                        <input class="check-all" type="checkbox" value="" onchange="checkAll(this,'permissions')" />
+                                        <small class="me-2">انتخاب همه</small>
+                                    </div>
+                                </div>
+                                <div class="" id="permissions">
+                                    <div class="accordion accordion-flush dir-ltr" id="accordionFlush">
+                                        @*@{
+                                            int counter = 1;
+                                            foreach (var itemSystem in Infrastructure.Utils.EnumUtils.GetValues<Domain.Enum.EnumPermissionSystem>().OrderBy(s => s))
+                                            {
+                                                ++counter;
+                                                <div class="accordion-item">
+                                                    <div class="d-flex justify-content-between" style="background-color: #eee; padding: 3px 10px; margin-bottom: 5px; border-radius: 10px; ">
+                                                        <h2 class="accordion-header" id="flush-heading">
+                                                            <button class="accordion-button dir-ltr" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse@(counter)" aria-expanded="true" aria-controls="flush-collapseOne">
+                                                                <span class="">
+                                                                    @Infrastructure.Utils.EnumUtils.GetDescription(itemSystem)
+                                                                </span>
+                                                            </button>
+                                                        </h2>
+                                                        <div class="d-flex align-items-center">
+                                                            <input class="check-all" type="checkbox" value="" onchange="checkAll(this,'flush-collapse@(counter)')" />
+                                                            <small class="me-2">همه</small>
+                                                        </div>
+                                                    </div>
+                                                    <div id="flush-collapse@(counter)" class="accordion-collapse collapse show P-5">
+                                                        <div class="accordion-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12" style="max-height:400px;overflow:auto">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>مشاهده</th>
+                                                                                <th>نام بخش</th>
+                                                                                <th>اضافه</th>
+                                                                                <th>تغییر</th>
+                                                                                <th>حذف</th>
+                                                                                <th>گزارش</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @{
+                                                                                var list = Model.ListPermission.Where(s => s.System == itemSystem).ToList();
+                                                                                foreach (var item in list.Where(s => s.ParentId == 0).OrderBy(s => s.Order))
+                                                                                {
+                                                                                    if (item.EnName == "Roles")
+                                                                                    {
+                                                                                        continue;
+                                                                                    }
+                                                                                    <tr>
+                                                                                        @{
+                                                                                            var itemRead = list.FirstOrDefault(s => s.ParentId == item.Id && s.EnName.Contains("Read"));
+                                                                                            if (itemRead != null)
+                                                                                            {
+                                                                                                var model = Model.ListUserPermission.FirstOrDefault(s => s.Permission == itemRead.EnName);
+                                                                                                <td>
+                                                                                                    @{
+                                                                                                        if (model != null)
+                                                                                                        {
+                                                                                                            <input checked type="checkbox" name="selectedPermissionIds[]" value="@itemRead.Id" />
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            <input @(Model.ListUserPermission.FirstOrDefault(s => s.Permission == itemRead.EnName) != null ? "checked" : "") type="checkbox" name="selectedPermissionIds[]" value="@itemRead.Id" />
+                                                                                                        }
+                                                                                                    }
+                                                                                                </td>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <td></td>
+                                                                                            }
+
+                                                                                            <td>@item.FaName</td>
+
+                                                                                            var itemCreate = list.FirstOrDefault(s => s.ParentId == item.Id && s.EnName.Contains("Create"));
+                                                                                            if (itemCreate != null)
+                                                                                            {
+                                                                                                var model = Model.ListUserPermission.FirstOrDefault(s => s.Permission == itemCreate.EnName);
+
+                                                                                                <td>
+                                                                                                    @{
+                                                                                                        if (model != null)
+                                                                                                        {
+                                                                                                            <input checked type="checkbox" name="selectedPermissionIds[]" value="@itemCreate.Id" />
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            <input @(Model.ListUserPermission.FirstOrDefault(s => s.Permission == itemCreate.EnName) != null ? "checked" : "") type="checkbox" name="selectedPermissionIds[]" value="@itemCreate.Id" />
+                                                                                                        }
+                                                                                                    }
+                                                                                                </td>
+
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <td></td>
+                                                                                            }
+
+                                                                                            var itemUpdate = list.FirstOrDefault(s => s.ParentId == item.Id && s.EnName.Contains("Update"));
+                                                                                            if (itemUpdate != null)
+                                                                                            {
+                                                                                                var model = Model.ListUserPermission.FirstOrDefault(s => s.Permission == itemUpdate.EnName);
+                                                                                                <td>
+                                                                                                    @{
+                                                                                                        if (model != null)
+                                                                                                        {
+                                                                                                            <input checked type="checkbox" name="selectedPermissionIds[]" value="@itemUpdate.Id" />
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            <input @(Model.ListUserPermission.FirstOrDefault(s => s.Permission == itemUpdate.EnName) != null ? "checked" : "") type="checkbox" name="selectedPermissionIds[]" value="@itemUpdate.Id" />
+                                                                                                        }
+                                                                                                    }
+                                                                                                </td>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <td></td>
+                                                                                            }
+
+                                                                                            var itemDelete = list.FirstOrDefault(s => s.ParentId == item.Id && s.EnName.Contains("Delete"));
+                                                                                            if (itemDelete != null)
+                                                                                            {
+                                                                                                var model = Model.ListUserPermission.FirstOrDefault(s => s.Permission == itemDelete.EnName);
+                                                                                                <td>
+                                                                                                    @{
+                                                                                                        if (model != null)
+                                                                                                        {
+                                                                                                            <input checked type="checkbox" name="selectedPermissionIds[]" value="@itemDelete.Id" />
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            <input @(Model.ListUserPermission.FirstOrDefault(s => s.Permission == itemDelete.EnName) != null ? "checked" : "") type="checkbox" name="selectedPermissionIds[]" value="@itemDelete.Id" />
+                                                                                                        }
+                                                                                                    }
+                                                                                                </td>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <td></td>
+                                                                                            }
+
+                                                                                            var itemReport = list.FirstOrDefault(s => s.ParentId == item.Id && s.EnName.Contains("Report"));
+                                                                                            if (itemReport != null)
+                                                                                            {
+                                                                                                var model = Model.ListUserPermission.FirstOrDefault(s => s.Permission == itemReport.EnName);
+                                                                                                <td>
+                                                                                                    @{
+                                                                                                        if (model != null)
+                                                                                                        {
+                                                                                                            <input checked type="checkbox" name="selectedPermissionIds[]" value="@itemReport.Id" />
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            <input @(Model.ListUserPermission.FirstOrDefault(s => s.Permission == itemReport.EnName) != null ? "checked" : "") type="checkbox" name="selectedPermissionIds[]" value="@itemReport.Id" />
+                                                                                                        }
+                                                                                                    }
+                                                                                                </td>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <td><input type="checkbox" /></td>
+                                                                                            }
+                                                                                        }
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-c-footer">
+            <div class="d-flex justify-content-start align-items-center shadow h-60px px-5">
+                <svg height="30" viewBox="0 -7 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Youtube-color</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-200.000000, -368.000000)" fill="#CE1312"> <path d="M219.044,391.269916 L219.0425,377.687742 L232.0115,384.502244 L219.044,391.269916 Z M247.52,375.334163 C247.52,375.334163 247.0505,372.003199 245.612,370.536366 C243.7865,368.610299 241.7405,368.601235 240.803,368.489448 C234.086,368 224.0105,368 224.0105,368 L223.9895,368 C223.9895,368 213.914,368 207.197,368.489448 C206.258,368.601235 204.2135,368.610299 202.3865,370.536366 C200.948,372.003199 200.48,375.334163 200.48,375.334163 C200.48,375.334163 200,379.246723 200,383.157773 L200,386.82561 C200,390.73817 200.48,394.64922 200.48,394.64922 C200.48,394.64922 200.948,397.980184 202.3865,399.447016 C204.2135,401.373084 206.612,401.312658 207.68,401.513574 C211.52,401.885191 224,402 224,402 C224,402 234.086,401.984894 240.803,401.495446 C241.7405,401.382148 243.7865,401.373084 245.612,399.447016 C247.0505,397.980184 247.52,394.64922 247.52,394.64922 C247.52,394.64922 248,390.73817 248,386.82561 L248,383.157773 C248,379.246723 247.52,375.334163 247.52,375.334163 L247.52,375.334163 Z" id="Youtube"> </path> </g> </g> </g></svg>
+                <p class="px-2 text-opacity-50">
+                    جهت آشنایی با نحوه عملکرد فرم ،
+                    <a href="javascript:void(0)" class="text-primary">ویدیویی آموزشی</a>
+                    را ببینید
+                </p>
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.Id)
+</form>
+<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    failedAjax = function (response) {
+        runAlert('error', response.Message)
+    };
+    successAjax = function (response) {
+        if (response.Result) {
+            closeModal();
+            $('#grid').data('kendoGrid').dataSource.read()
+        }
+        else {
+            runAlert('error',response.Message)
+        }
+
+    };
+</script>
+<script>
+    function generatePassword() {
+        var length = 8,
+            charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+            retVal = "";
+        for (var i = 0, n = charset.length; i < length; ++i) {
+            retVal += charset.charAt(Math.floor(Math.random() * n));
+        }
+        return retVal;
+    }
+</script>
+
+
+<!-- iCheck -->
+<script src="/lib/iCheck/icheck.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2({
+            dir: "rtl",
+            dropdownParent: $("#ListOrganizationId")
+        });
+    });
+</script>
+
+<script>
+    function submit_Form_Create_FBForm_FormBuilder() {
+        $(".form_SubmitButtonInTop").submit();
+    }
+</script>
+
+<script>
+    $("#viewPassword").click(function () {
+
+        if ('Password' === $('#Password').attr('type')) {
+            $('#Password').prop('type', 'text');
+        } else {
+            $('#Password').prop('type', 'password');
+        }
+    })
+</script>

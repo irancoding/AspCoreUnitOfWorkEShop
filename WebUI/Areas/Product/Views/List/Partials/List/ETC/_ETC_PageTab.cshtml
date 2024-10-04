@@ -1,0 +1,30 @@
+﻿@model Application.ViewModels.ProductReadVm
+@using Kendo.Mvc.UI
+@using Domain.Enum
+
+<style>
+    .nav-tabs-page .nav-link {
+        color:#333;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+        gap:5px;    
+    }
+</style>
+
+<!--Clean-->
+<ul class="nav nav-pills nav-tabs-page mb-4 justify-content-center p-4">
+    <li class="nav-item">
+        <a class="nav-link @(Model.Tab==EnumTab.One?"active":"")" href="@Url.Action("Index", "List", new { Area = "Product" })">
+            <i class="fa fa-2x fa-money"></i>
+            Product
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(Model.Tab==EnumTab.Two?"active":"")" href="@Url.Action("Index", "List", new { Area = "Order" })">
+            <i class="fa fa-2x fa-sliders"></i>
+            Order
+        </a>
+    </li>
+</ul>

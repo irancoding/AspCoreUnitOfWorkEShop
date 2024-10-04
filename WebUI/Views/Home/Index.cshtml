@@ -1,0 +1,137 @@
+﻿@using Domain.Enum
+@{
+    ViewData["Title"] = "صفحه اصلی";
+}
+
+<!--Clean-->
+@section Head {
+    <link href="~/plus/css/site.css" rel="stylesheet" />
+}
+<style>
+    @@media(max-width:1000px){
+        .flex-two-col{
+            flex-wrap:wrap;
+        }
+        .flex-two-col-item {
+            margin:0!important;
+        }
+    }
+</style>
+
+<main class="page-body">
+    <div class="services-box-body">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="" id="_Read_Services"></div>
+                <div class="d-flex align-items-center justify-content-center get-start-btn mt-5">
+                    <a href="https://irancoding.com" class="btn btn-c btn-lg-c btn-primary-c btn-get-start-in-home">
+                        Created By 
+                        <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="10" height="14"
+                             viewBox="0 0 9 7">
+                            <path fill-rule="evenodd"
+                                  d="M4.628.616a.5.5 0 1 0-.64.768L6.203 3.23H.5a.5.5 0 0 0 0 1h5.612L3.988 6a.5.5 0 1 0 .64.769l3.23-2.693a.5.5 0 0 0 0-.768z"
+                                  clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+                <div class="slogan d-flex flex-wrap justify-content-center">
+                    No credit card needed ✦ Unlimited time on Free plan
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+        </div>
+    </div>
+    <div class="section-lg">
+        <div class="looking-for">
+            <div class="looking-for-header">
+                <p class="looking-for-header-title">
+                    <svg height="40" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <defs>
+                                <style>
+                                    .a {
+                                        fill: none;
+                                        stroke: #000000;
+                                        stroke-linecap: round;
+                                        stroke-linejoin: round;
+                                    }
+                                </style>
+                            </defs>
+                            <path class="a" d="M12.66,16.49l7.5,7.5L35.38,8.77,43,16.39,20.17,39.23,5,24.06Z"></path>
+                            <line class="a" x1="12.54" y1="31.61" x2="20.16" y2="23.99"></line>
+                        </g>
+                    </svg>
+                    Lorem ipsum
+                </p>
+                <h1 class="looking-for-header-subtitle">Lorem ipsum dolor sit amet</h1>
+                <h6 class="looking-for-header-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                </h6>
+            </div>
+            <div class="mb-5">
+                <h4>New Products</h4>
+                <div id="_Read_Product_New"></div>
+            </div>
+            <div class="mb-5">
+                <h4>MostSale Products</h4>
+                <div id="_Read_Product_MostSale"></div>
+            </div>
+            <div class="mb-5">
+                <h4>Recommended Products</h4>
+                <div id="_Read_Product_Recommended"></div>
+            </div>          
+
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/plus/js/home.js"></script>
+}
+
+<script>
+    $(function () {
+        _Read_Product("@ProductPartialEnum.Read_New");
+        _Read_Product("@ProductPartialEnum.Read_MostSale");
+        _Read_Product("@ProductPartialEnum.Read_Recommended");
+    })
+
+    function _Read_Product(partial, payload) {
+
+        var url;
+
+        switch (partial) {
+            case "@ProductPartialEnum.Read_New":
+                url = "/Product/_Read_Product_Site?Partial=" + "@ProductPartialEnum.Read_New";
+                break;
+            case "@ProductPartialEnum.Read_MostSale":
+                url = "/Product/_Read_Product_Site?Partial=" + "@ProductPartialEnum.Read_MostSale";
+                break;
+            case "@ProductPartialEnum.Read_Recommended":
+                url = "/Product/_Read_Product_Site?Partial=" + "@ProductPartialEnum.Read_Recommended";
+                break;
+        }
+
+        $.ajax({
+            url: url,
+            success: function (response) {
+                switch (partial) {
+                    case "@ProductPartialEnum.Read_New":
+                        $("#_Read_Product_New").html(response);
+                        break;
+                    case "@ProductPartialEnum.Read_MostSale":
+                        $("#_Read_Product_MostSale").html(response);
+                        break;
+                    case "@ProductPartialEnum.Read_Recommended":
+                        $("#_Read_Product_Recommended").html(response);
+                        break;
+                }
+            }
+        })
+    }
+</script>

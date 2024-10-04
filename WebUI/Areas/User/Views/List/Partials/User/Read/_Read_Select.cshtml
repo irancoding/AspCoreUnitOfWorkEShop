@@ -1,0 +1,12 @@
+﻿@using Kendo.Mvc.UI
+@model Application.ViewModels.UserReadVm
+
+<label class = "col-form-label required">User</label>
+<select class="form-control" name="OwnerUserId">
+    @{
+        foreach (var item in Model.ListUserVm)
+        {
+            <option value="@item.Id">@item.FullName</option>
+        }
+    }
+</select>

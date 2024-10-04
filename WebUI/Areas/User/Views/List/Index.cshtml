@@ -1,0 +1,69 @@
+﻿@using Infrastructure.Utils.Extensions
+@using Domain.Enum
+@{
+    ViewData["Title"] = "کاربران";
+}
+
+@Html.RenderAction("_Partials", "Dashboard", new { Area = "User" })
+
+<div class="d-flex flex-wrap justify-content-between align-items-center px-5 mt-5">
+    <div class="right">
+        <div class="d-flex align-items-center gap-2 dir-rtl">
+            <a class="nav-link btn btn-primary p-2 rounded-1 h-50px w-50px rounded-pill d-flex align-items-center justify-content-center" aria-current="page" href="#" onclick="_Create()">
+                <svg height="20px" width="20px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="#ffffff" fill-rule="evenodd" d="M9 17a1 1 0 102 0v-6h6a1 1 0 100-2h-6V3a1 1 0 10-2 0v6H3a1 1 0 000 2h6v6z"></path> </g></svg>
+            </a>
+            <div class="m-2 d-flex flex-column gap-1">
+                <h4>فهرست کاربران</h4>
+                <small class="d-block text-white bg-primary p-1 text-end pe-1 ps-4">لیست فهرست کاربران ثبت شده</small>
+            </div>
+        </div>
+    </div>
+    <div class="left d-flex align-items-center mb-3">
+    </div>
+</div>
+
+@Html.RenderAction("_PartialsUser", "List", "User", new { Partial = UserPartialEnum.ETC })
+@Html.RenderAction("_Read", "List", new { Area = "User" })
+
+<style>
+    .permissions input[type=checkbox] {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(1.5); /* IE */
+        -moz-transform: scale(1.5); /* FF */
+        -webkit-transform: scale(1.5); /* Safari and Chrome */
+        -o-transform: scale(1.5); /* Opera */
+        transform: scale(1.5);
+        padding: 10px;
+    }
+
+    .permissions input[type=radio] {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(1.5); /* IE */
+        -moz-transform: scale(1.5); /* FF */
+        -webkit-transform: scale(1.5); /* Safari and Chrome */
+        -o-transform: scale(1.5); /* Opera */
+        transform: scale(1.5);
+        padding: 10px;
+    }
+</style>
+<script>
+    function checkAll(element, containerId, ischeck) {
+
+        var selector = $('#' + containerId + ' input[type=checkbox]');
+
+        if (ischeck == true) {
+            selector.prop('checked', true);
+        }
+        else if (ischeck == false) {
+            selector.prop('checked', false);
+        }
+        else {
+            if ($(element).is(':checked')) {
+                selector.prop('checked', true);
+            }
+            else {
+                selector.prop('checked', false);
+            }
+        }
+    }
+</script>

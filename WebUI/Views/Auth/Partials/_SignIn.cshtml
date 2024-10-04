@@ -1,0 +1,57 @@
+﻿@model WebUI.Models.Auth.SignInVm
+@using Kendo.Mvc.UI
+@{
+    ViewData["Title"] = "ورود به سامانه";
+}
+<script src="~/common/plugins/notification/notification-box-toastee/jquery.toastee.0.1.js"></script>
+
+<form autocomplete="off" asp-route-returnUrl="@Model.returnUrl" class="form" enctype="multipart/form-data" method="post" data-ajax="true" data-ajax-url="/Auth/SignIn" data-ajax-method="post" data-ajax-failure="failedAjax" data-ajax-success="successAjax">
+    <div class="sign-modal">
+        <div class="sign-modal-header position-relative pt-3 text-center">
+            <button type="button" class="btn btn-light rounded-circle" style="position:absolute;right:-5px;top:-30px" data-bs-toggle="modal">
+                <i class="fa fa-times"></i>
+            </button>
+            <div class="sign-modal-header-title">ورود به حساب کاربری</div>
+            <div class="sign-modal-header-subtitle">برای ورود لطفا شماره موبایل خود را وارد کنید</div>
+        </div>
+        <div class="sign-modal-body">
+            <div>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-froup mb-2">
+                    @Html.TextBoxFor(f => f.MobileNumber, new { @class = "form-control form-control-md text-center", @placeholder = "شماره موبایل" })
+                </div>
+                <div class="form-froup container-select2 text-center">
+                    <input class="form-control form-control-md text-center" type="password" name="Password" @*autocomplete="off"*@ placeholder="رمز عبور" />
+                </div>
+                <hr>
+                <div class="text-center mb-3">
+                    <button type="submit" href="javascript:void(0)" class="btn-c btn-primary-c form-control">ورود</button>
+                    <p class="sign-modal-rules">ورود به سایت به معنای پذیرش قوانین و حریم خصوصی میباشد</p>
+                </div>
+            </div>
+        </div>
+        <div class="sign-modal-footer text-center mt-3">
+            <p class="sign-modal-or">یا</p>
+            <a id="btn-sign-up-in-sign-modal" onclick="_signUp()" href="javascript:void(0)" class="btn-c btn-outline-primary-c d-flex justify-content-center">ثبت نام</a>
+        </div>
+    </div>
+</form>
+
+<script>
+    failedAjax = function (response) {
+        notify(response.Message, "error", "bottom-center");
+    };
+    successAjax = function (response) {
+        if (response.Result) {
+            //showSuccess('عملیات ورود با موفقیت انجام شد');
+            location.reload();
+            $("#isAuthenticated").val(true);
+        }
+        else {
+            alert(response.Message);
+        }
+    };
+</script>
+
+<script src="~/panel/lib/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/panel/lib/jquery-validate/jquery.validate.unobtrusive.min.js"></script>

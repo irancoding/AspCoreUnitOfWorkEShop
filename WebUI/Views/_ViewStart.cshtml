@@ -1,0 +1,16 @@
+@{
+    Layout = "Layouts/_Layout";
+}
+
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        <input type="hidden" id="isAuthenticated" value="true" />
+    }
+    else
+    {
+        <input type="hidden" id="isAuthenticated" value="false" />
+    }
+}
+
+<input type="hidden" id="tempGlobal" />

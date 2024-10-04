@@ -1,0 +1,385 @@
+﻿@using Kendo.Mvc.UI
+@model Application.ViewModels.UserReadVm
+
+<script id="col-one-template" type="text/x-kendo-template">
+
+    # if(FileAvatarStr!=null) { #
+        <div class='k-grid-img' style='background-image: url("/uploads/#= FileAvatarStr #");'></div>
+    # }
+     else { #
+       <div class='k-grid-img' style='background-image: url("/new-theme/images/people/user.svg");'></div>
+    # } #
+
+       <span class='label label-inline'>#: FullName #</span>
+
+</script>
+
+<script id="col-two-template" type="text/x-kendo-template">
+
+    # if(UserType==1) { #
+        <span class="badge bg-primary">ادمین</span>
+    # }
+     else if(UserType==2) { #
+        <span class="badge bg-secondary text-black-50">کاربر معمولی</span>
+    # } #
+
+</script>
+
+<script id="status-template" type="text/x-kendo-template">
+
+    # if(1==1) { #
+        <span class="badge bg-warning">جدید</span>
+    # }
+     else if(Type==2) { #
+        <span class="label label-warning label-pill label-inline mr-2">انتظار</span>
+    # }
+     else if(Type==0) { #
+       <span class="label label-success label-pill label-inline mr-2">فعال</span>
+    # }
+     else if(Type==-1) { #
+        <span class="label label-info label-pill label-inline mr-2">غیرفعال</span>
+    # }
+     else if(Type==-2) { #
+       <span class="label label-danger label-pill label-inline mr-2">عدم تایید</span>
+    # } #
+
+</script>
+
+<script id="col-three-template" type="text/x-kendo-template">
+
+    <small class="bg-light text-dark p-1 px-3 rounded-1 d-inline-block">#=ListOrganizationStr#</small>
+
+</script>
+
+<script id="operation-template" type="text/x-kendo-template">
+
+    <div class='d-flex justify-content-center' style='flex-wrap:nowrap'>
+        @*<a class="btn btn-sm btn-primary ms-2 p-3 d-flex align-items-center justify-content-center rounded-1" href="javascript:void(0)"  onclick='_Permission("#=Id#")'>
+            مجوزها
+        </a>*@
+        @*<a class="btn btn-sm btn-light ms-2 p-3 d-flex align-items-center justify-content-center rounded-1" href="javascript:void(0)"  onclick='_ChangePassword("#=Id#")'>
+             تغییر رمز عبور
+        </a>*@
+        <a class="flex-grow-1 btn dir-rtl btn-sm btn-primary ms-2 p-2 d-flex align-items-center justify-content-center rounded-1" href="javascript:void(0)"  onclick='Panel("#=Id#")'>
+            ورود به پنل
+        </a>
+        <a class="btn btn-sm btn-light ms-2 p-3 d-flex align-items-center justify-content-center rounded-1" href="javascript:void(0)"  onclick='_Update("#=Id#")'>
+            <i class='fa fa-pencil'></i>
+        </a>
+        <a class="btn btn-sm btn-light ms-2 p-3 d-flex align-items-center justify-content-center rounded-1" href="javascript:void(0)"  onclick='_Delete("#=Id#")'>
+            <i class='fa fa-trash'></i>
+        </a>
+    </div>
+
+</script>
+
+<div class="container px-2">
+    <div class="k-rtl area">
+
+        @(Html.Kendo().Grid<Application.ViewModels.UserVm>()
+            .Name("grid")
+            .ToolBar(toolbar =>
+            {
+                toolbar.Search().Text("جستجو ...");
+            })
+            .Search(s =>
+            {
+                s.Field(o => o.Code, "contains");
+                s.Field(o => o.Symbol, "contains");
+                s.Field(o => o.FullName, "contains");
+                s.Field(o => o.UserName, "contains");
+                //s.Field(o => o.ShipCity, "gt");
+                //s.Field(o => o.ShipCity, "eq");
+                //s.Field(o => o.ShipCity, "contains");
+            })
+            .Filterable()
+            .Columns(columns =>
+            {
+            //============================Model columns============================
+
+            columns.Bound(p => p.Id).Hidden();
+            columns.Select().Width(40);
+            columns.Bound(p => p.Code).Title("کد کاربر").Width(100);
+            columns.Bound(p => p.FullName).Title("نام و نام خانوادگی").ClientTemplateId("col-one-template").Width(200);
+            columns.Bound(p => p.Symbol).Title("نوع کاربر").ClientTemplateId("col-two-template");
+            columns.Bound(p => p.UserName).Title("نام کاربری");
+            columns.Bound(p => p.StatusStr).Title("وضعیت");
+            //columns.Bound(p => p.DateBirth).Title("تاریخ تولد");
+            //columns.Bound(p => p.Symbol).Title("سمت ها").ClientTemplateId("col-three-template");
+            //columns.Bound(p => p.Id).Title("وضعیت").Width(100).ClientTemplateId("status-template");
+            columns.Bound(p => p.Id).Title("عملیات").Width(300)
+            .HeaderHtmlAttributes(new { style = "text-align: center; justify-content: center" })
+            .ClientTemplateId("operation-template");
+            //columns.Bound(p => p.FileName).Hidden();
+
+            //============================command Template============================
+
+                    @*columns.Template(@<text></text>).HtmlAttributes(new { @class = "templateCell" })
+                                                    .Title("عملیات")
+                                                    .ClientTemplate(
+                                                                    "<a onclick='_Update(#= Id #)' href='javascript:void(0)' class=' k-button k-button-sm k-button-rectangle k-rounded-md k-button-solid k-button-solid-base'><i class='fa fa-edit'></i></a>"
+                                                    ).Width(70);*@
+                //columns.Bound(p => p.Name).Filterable(false);//غیر قابل ویرایش
+                //columns.Bound(p => p.DateBirth).Format("{0:yyyy/MM/dd}").Width(130); ;
+                //columns.Bound(p => p.DateRegister).Format("{0:yyyy/MM/dd}").Width(130); ;
+
+
+                //columns.Bound(p => p.OrderDate).Format("{0:MM/dd/yyyy}");
+                //columns.Bound(p => p.DecimalNumber).Format("{0:c}");//دورقم اعشار پولی
+                //columns.Bound(p => p.DecimalNumber).Format("{0:c}");//صفر اعشار پولی
+                //columns.Bound(p => p.DecimalNumber).Format("{0:n3}").Title("حقوق");//صحیح پولی
+
+
+                //============================EditorTemplate columns============================
+
+                //columns.Bound(p => p.IsActive).ClientTemplate("# if(IsActive==true) {# <span class='label label-primary'>فعال</span> #} else {# <span class='label label-inverse-primary'>غیر فعال</span> #}#").EditorTemplateName("Boolean").Title("وضعیت");
+                //columns.Bound(p => p.FilePic).EditorTemplateName("FileUpload").Title("فایل");
+                //columns.Bound(p => p.DateRegister).EditorTemplateName("DateTime").ClientTemplate("# DateRegister #").Title("تاریخ").Format("{0:MM/dd/yyyy}");
+                //columns.Bound(p => p.FilePic).ClientTemplate("<input type='text' name='FilePic' value='#= FilePic #'/>").EditorTemplateName("IdEditor");
+                //columns.Bound(e => e.FilePic).EditorTemplateName("ResumeFileUrl").Title("Resume").ClientTemplate("#:Filename#");
+                //columns.Bound(p => p.Id).ClientTemplate("<input type='text'/><img src='/Content/Images/image.gif' onclick= 'OpenPopup(this)' />").EditorTemplateName("IdEditor");
+                //columns.Bound(property => property.Name).Width(38).EditorTemplateName("CompaniesList").Title("NeatProperty").ClientTemplate("#:Name#"); ;
+                //columns.Bound(p => p.Name).EditorTemplateName("CompaniesList").Title("NeatProperty").ClientTemplate("#:Name#");
+            })
+                    //.ToolBar(toolBar =>
+                    //{
+                    //    //toolBar.Create().Text("جدید");
+                    //    //toolBar.Save().SaveText("ذخیره تغییرات").CancelText("انصراف");
+                    //    toolBar.Excel().Text("");
+                    //    toolBar.Pdf().Text("");
+                    //    toolBar.Search().Text("جستجو ...");
+                    //    toolBar.ClientTemplate(
+                    //        "<div class=\"d-flex\"" +
+                    //            "<div class=\"command-buttons\">" +
+                    //                "<a onclick=\"_LoadPartial('UserAccountHRContract')\"  href='javascript:void(0)' class='m-l-10 k-button k-button-md k-button-rectangle k-rounded-md k-button-solid k-button-solid-warning'>جدید</a>" +
+                    //                "<a onclick=\"_LoadPartial('UserAccountHRContractFunction')\"  href='javascript:void(0)' class='m-l-10 k-button k-button-sm k-button-rectangle k-rounded-md k-button-solid k-button-solid-base'>سایر</a>" +
+                    //                "<a onclick=\"_LoadPartial('UserAccountHRContractSalaryCalculation')\"  href='javascript:void(0)' class='m-l-10 k-button k-button-sm k-button-rectangle k-rounded-md k-button-solid k-button-solid-base'> سایر</a>" +
+                    //                "<div class='btn-group' role='group' data-toggle='tooltip' data-placement='top' title='' data-original-title='.btn-xlg'>" +
+                    //            "</div>"+
+                    //            "<div class=\"command-buttons\">" +
+                    //            "</div>" +
+                    //        "</div>"
+
+                    //        );
+                    //})
+                    //.Events(ev => ev.Save(@"function(e){alert('1')}"))
+                    //.Editable(editable => editable.Mode(GridEditMode.InCell))
+                    .Pageable()
+                    //.Sortable()
+                    //.Scrollable()
+                    .Scrollable(a => a.Height("auto"))
+                    //.NoRecords("هیچ داده ای وارد نشده است !")
+                    //.Scrollable(scrollable => scrollable.Virtual(true))
+                    //.Scrollable(sc => sc.Endless(true))
+                    //.ClientDetailTemplateId("template")
+                    .Events(ev => ev.Change("onChange"))
+                    //.Filterable()
+                    .Resizable(resize => resize.Columns(true))
+                    //.EnableCustomBinding(true)
+                    .Pageable(m => m.PageSizes(new int[] { 10, 20, 50, 100,1000 }))
+                    //.Groupable()
+                    //.Groupable(g => g.Messages(messages => messages.Empty("<small>جهت گروه بندی فیلدهای موردنظر را به اینجا بکشید</small>")))
+                    //.Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                    .HtmlAttributes(new { style = "height:400px;" })
+                    //.Scrollable(sc => sc.Endless(true))
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Batch(true)
+                        .ServerOperation(false)
+                        //.Events(events => events.Error("error_handler"))
+                        .Model(model =>
+                        {
+                            model.Id(p => p.Id);
+                            model.Field(e => e.FullName);
+                            //model.Field(e => e.Name).Editable(false);
+                        })
+                        .PageSize(5)
+                        .Read(read => read.Action("ReadGrid", "List", new {  Area = "User" }))
+                        .Create(create => create.Action("Create", "List", new { Area = "User" }))
+                        .Update(update => update.Action("Update", "List", new { Area = "User" }))
+                        .Destroy(destroy => destroy.Action("Delete", "List", new { Area = "User" }))
+                    )
+
+    )
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var selectedIds;
+    //function onChange(arg) {
+    //    selectedIds = this.selectedKeyNames().join(", ");
+    //}
+
+
+    // function that gathers IDs of checked nodes
+    function checkedNodeIds(nodes, checkedNodes) {
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].checked) {
+                checkedNodes.push(nodes[i].id);
+            }
+
+            if (nodes[i].hasChildren) {
+                checkedNodeIds(nodes[i].children.view(), checkedNodes);
+            }
+        }
+    }
+
+    // show checked node IDs on datasource change
+    function onChange(arg) {
+        var checkedNodes = [],
+            dropDownTree = $("#ListOrganizationId").data("kendoDropDownTree"),
+            message;
+
+        checkedNodeIds(dropDownTree.dataSource.view(), checkedNodes);
+
+        if (checkedNodes.length > 0) {
+            $("#ListOrganizationId").val(checkedNodes.join(","));
+        } else {
+            $("#ListOrganizationId").val(checkedNodes.join(","));
+        }
+    }
+
+</script>
+
+<!-- _UserRole_Read -->
+<script>
+    function _UserRole_Read() {
+
+        if (selectedIds == undefined || selectedIds == '') {
+            alert("هیچ کاربری انتخاب نشده است");
+            return;
+        }
+
+        $.ajax({
+            url: "@Url.Action("_ReadPermission", "UserRole", new { Area="User"})",
+            data: { selectedUserIds: selectedIds},
+            success: function (response) {
+                showModal('ایجاد مجوز', response,'lg');
+            }
+        })
+    }
+</script>
+
+<!--CRUD-->
+<section>
+
+    <!-- _Create -->
+    <script>
+        function _Create() {
+            $.ajax({
+                url: "@Url.Action("_Create", "List", new { Area="User"})",
+                success: function (response) {
+                    $('#grid').data('kendoGrid').dataSource.read();
+                    showModal('ایجاد کاربر', response,'xl');
+                }
+            })
+        }
+    </script>
+
+    <!-- _Update -->
+    <script>
+        function _Update(Id) {
+
+            $.ajax({
+                url: "@Url.Action("_Update", "List", new { Area = "User" })",
+                data: { UserId: Id },
+                success: function (response) {
+                    showModal('ویرایش کاربر', response, 'xl');
+                }
+            })
+        }
+    </script>
+    <!-- _Delete -->
+    <script>
+        function _Delete(Id) {
+            $.ajax({
+                url: "@Url.Action("_Delete", "List", new { Area = "User" })",
+                data: { UserId: Id },
+                success: function (response) {
+                    showModal('حذف کاربر', response,'md');
+                }
+            })
+        }
+    </script>
+    <!-- _Search -->
+    <script>
+        function _Search() {
+            $.ajax({
+                url: "@Url.Action("_Search", "List", new { Area = "User" })",
+                /*data: { VixId: Id },*/
+                success: function (response) {
+                    secondSidebar(response);
+                }
+            })
+        }
+    </script>
+
+    <!-- _ChangePassword -->
+    <script>
+        function _ChangePassword(Id) {
+
+            $.ajax({
+                url: "@Url.Action("_ChangePassword", "List", new { Area = "User" })",
+                data: { UserId: Id },
+                success: function (response) {
+                    showModal('ویرایش کاربر', response, 'md');
+                }
+            })
+        }
+    </script>
+</section>
+
+<script>
+    function Panel(Id) {
+        $.ajax({
+            url: "@Url.Action("Panel", "List", new { Area="User"})",
+            type: "POST",
+            data: { Id: Id },
+            success: function (response) {
+                location.href = "/User/Dashboard";
+            }
+        });
+    }
+</script>
+
+<!--Permission-->
+<section>
+
+    <!-- _Permission -->
+    <script>
+        function _Permission(Id) {
+
+            $.ajax({
+                url: "@Url.Action("_Permission", "List", new { Area="User"})",
+                data: { selectedUserIds: Id},
+                success: function (response) {
+                    showModal('ایجاد مجوز', response,'lg');
+                }
+            })
+        }
+    </script>
+
+</section>
+
+<style>
+    .employee-photo {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-size: 40px 44px;
+        background-position: center center;
+        vertical-align: middle;
+        line-height: 41px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+    }
+
+    .employee-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 41px;
+        padding-left: 10px;
+    }
+</style>

@@ -1,0 +1,49 @@
+﻿@using Kendo.Mvc.UI
+@model Application.ViewModels.ProductReadVm
+@using Domain.Enum
+
+<div class="looking-for-body">
+    <div class="looking-for-slider">
+        <div class="owl-carousel">
+            @{
+                foreach (var item in Model.ListProductVm)
+                {
+                    <a href="@Url.Action("Details","Product",new { Area="" })" class="looking-for-slider-item">
+                        <div class="looking-for-slider-item-header" style="background-image: url(/site/images/pictures/good.png); "></div>
+                        <div class="looking-for-slider-item-footer">
+                            <h5>
+                                @item.Title
+                            </h5>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    600: {
+                        items: 3,
+                        nav: false
+                    },
+                    1000: {
+                        items: 4,
+                        nav: true,
+                        loop: false
+                    }
+                }
+            });
+
+        });
+</script>

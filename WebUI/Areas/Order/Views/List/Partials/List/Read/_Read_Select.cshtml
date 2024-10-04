@@ -1,0 +1,12 @@
+﻿@using Kendo.Mvc.UI
+@model Application.ViewModels.OrderReadVm
+
+<label class="col-form-label required">Order</label>
+<select class="form-control" name="OrderId">
+    @{
+        foreach (var item in Model.ListOrderVm)
+        {
+            <option value="@item.Id">@item.Code</option>
+        }
+    }
+</select>

@@ -1,0 +1,32 @@
+﻿@model Application.ViewModels.ProductVm
+@using Domain.Enum
+@{
+    ViewData["Title"] = "صفحه اصلی";
+    Layout = "~/Views/Shared/Layouts/_LayoutPage.cshtml";
+}
+
+<div class="contact-us" id="ETC_ProductCard">
+</div>
+
+<script>
+    $(function () {
+        _Partials_Product("@ProductPartialEnum.ETC_ProductCard");
+    })
+    function _Partials_Product(partial, payload) {
+        var url;
+
+        switch (partial) {
+            case "@ProductPartialEnum.ETC_ProductCard":
+                url = "/Product/_Partials_Product?Partial=" + partial;
+                break;
+            default:
+        }
+
+        $.ajax({
+            url: url,
+            success: function (response) {
+                $("#ETC_ProductCard").html(response);
+            }
+        })
+    }
+</script>

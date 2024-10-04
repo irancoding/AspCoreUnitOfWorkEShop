@@ -1,0 +1,131 @@
+﻿@using Infrastructure.Utils.Extensions
+@using Domain.Enum
+<!--Clean-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- meta -->
+    <meta name="description" content="">
+    <meta name="author" content="Themepixels">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
+    <title>@ViewData["Title"] - EShop</title>
+
+    <!-- font-awesome -->
+    <link href="~/common/fonts/fontawesome/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- bootstrap -->
+    <link href="~/lib/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/common/plugins/bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/common/plugins/bootstrap/js/bootstrap5.3.2.bundle.min.js"></script>
+
+    <!-- summernote -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="common/plugins/iCheck/skins/all.css" rel="stylesheet" />
+    <link href="common/plugins/iCheck/skins/minimal/_all.css" rel="stylesheet" />
+    <link href="common/plugins/iCheck/skins/minimal/blue.css" rel="stylesheet" />
+
+    <!-- select2 -->
+    <link href="~/common/plugins/select2/css/style.css" rel="stylesheet" />
+
+    <!-- kendo -->
+    <link href="~/panel/lib/kendo/css/kendo.default-ocean-blue.min.css" rel="stylesheet" />
+
+    <!-- styles -->
+    <link href="~/common/css/style.css" rel="stylesheet" />
+    <link href="~/panel/css/new/style.css" rel="stylesheet" />
+    <link href="/panel/css/plus/kendo.css" rel="stylesheet">
+
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- kendo -->
+    <script src="~/panel/lib/kendo/js/jszip.min.js"></script>
+    <script src="~/panel/lib/kendo/js/kendo.all.min.js"></script>
+    <script src="~/panel/lib/kendo/js/kendo.aspnetmvc.min.js"></script>
+    <script>
+        kendo.culture("fa-IR");
+    </script>
+
+    <!--select2-->
+    <script src="~/common/plugins/select2/js/script.js"></script>
+
+    <!--jquery-unobtrustive-->
+    <script src="~/common/plugins/jquery-unobtrustive/js/script.js"></script>
+
+    <link href="~/panel/lib/Minimalist-Animated-Hover-Tooltip-Plugin-with-jQuery-Viewitle/teskly.viewitle.css" rel="stylesheet" />
+    <!--select2-->
+    <script src="~/panel/lib/Minimalist-Animated-Hover-Tooltip-Plugin-with-jQuery-Viewitle/teskly.viewitle.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            jQuery(document).viewitle();
+        });
+    </script>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="page-content">
+            @Html.RenderAction("_Partials", "Layout", new { Area = "", Partial = LayoutPartialEnum.PageNavbar_User })
+            @RenderBody()
+        </div>
+    </div>
+
+    <partial name="~/Views/Shared/_GlobalScript.cshtml" />
+    <partial name="~/Views/Shared/_GlobalView.cshtml" />
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <!-- feather -->
+    <script src="/common/plugins/feathericons/feather.min.js"></script>
+
+    <!-- perfect-scrollbar -->
+    <script src="/common/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="/common/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- jquery.validate -->
+    <script src="~/common/plugins/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/common/plugins/jquery-validate/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- summernote -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="~/common/plugins/summernote/summernote-ext-rtl.js"></script>
+
+    <!--inputmask-->
+    <script src="~/common/plugins/input-mask/dist/jquery.inputmask.min.js"></script>
+    <script src="~/common/plugins/input-mask/dist/inputmask.min.js"></script>
+    <script src="~/common/plugins/input-mask/dist/bindings/inputmask.binding.js"></script>
+
+    <!--script-->
+    <script src="~/plus/js/input-mask.js"></script>
+    <script src="~/plus/js/icheck.js"></script>
+
+    <!-- rider-html-pro -->
+    <script src="~/panel/js/plus/rider-html-pro/assets/js/scripts.bundle.js"></script>
+
+    <!--hint-->
+    <script src="~/common/plugins/tooltip/cool-hint-css/src/hint-css.js"></script>
+
+    <!--notify-->
+    <script src="~/common/plugins/toast/Toast-Notification-Notify/dist/jquery.notify.js"></script>
+
+    <!-- script -->
+    <script src="~/common/js/script.js"></script>
+    <script src="~/panel/js/script.js"></script>
+
+</body>
+</html>
