@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8mdBpK1DbUUpRtjrohxnZZNvzwot510gIICOgioPzjcrnkFF3EpNvSoVYzFKqRnpInVwL+ipL59RZppO1QbcmA==",
+  "dgSpecHash": "6n//KuygQauhLN9yOtKnZqQ8XVCOW3GuW8V1HQJYBdDTwtrD2gC+lP5qVxQn7GBH6T6fHkFSTRRQwmJjr4lJtw==",
   "success": true,
-  "projectFilePath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Application\\Application.csproj",
+  "projectFilePath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Developer6669\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Developer6669\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

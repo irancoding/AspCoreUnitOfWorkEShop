@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\WebUI\\WebUI.csproj": {}
+    "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\WebUI\\WebUI.csproj": {}
   },
   "projects": {
-    "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Application\\Application.csproj": {
+    "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Application\\Application.csproj",
+        "projectUniqueName": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Application\\Application.csproj",
+        "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\Developer6669\\.nuget\\packages\\",
-        "outputPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Application\\obj\\",
+        "outputPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\NuGet.Config",
+          "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\NuGet.Config",
           "C:\\Users\\Developer6669\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -37,8 +37,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Domain\\Domain.csproj"
+              "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Domain\\Domain.csproj"
               }
             }
           }
@@ -89,20 +89,20 @@
         }
       }
     },
-    "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Domain\\Domain.csproj": {
+    "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Domain\\Domain.csproj",
+        "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Developer6669\\.nuget\\packages\\",
-        "outputPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Domain\\obj\\",
+        "outputPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\NuGet.Config",
+          "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\NuGet.Config",
           "C:\\Users\\Developer6669\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -194,20 +194,20 @@
         }
       }
     },
-    "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Developer6669\\.nuget\\packages\\",
-        "outputPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Infrastructure\\obj\\",
+        "outputPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\NuGet.Config",
+          "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\NuGet.Config",
           "C:\\Users\\Developer6669\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -227,8 +227,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Application\\Application.csproj": {
-                "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Application\\Application.csproj"
+              "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Application\\Application.csproj": {
+                "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Application\\Application.csproj"
               }
             }
           }
@@ -275,20 +275,20 @@
         }
       }
     },
-    "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\WebUI\\WebUI.csproj": {
+    "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\WebUI\\WebUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\WebUI\\WebUI.csproj",
+        "projectUniqueName": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\WebUI\\WebUI.csproj",
         "projectName": "WebUI",
-        "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\WebUI\\WebUI.csproj",
+        "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\WebUI\\WebUI.csproj",
         "packagesPath": "C:\\Users\\Developer6669\\.nuget\\packages\\",
-        "outputPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\WebUI\\obj\\",
+        "outputPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\WebUI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\NuGet.Config",
+          "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\NuGet.Config",
           "C:\\Users\\Developer6669\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -308,11 +308,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Application\\Application.csproj": {
-                "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Application\\Application.csproj"
+              "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Application\\Application.csproj": {
+                "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Application\\Application.csproj"
               },
-              "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\IranCodingCQRS\\Infrastructure\\Infrastructure.csproj"
+              "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\IranCoding\\Projects\\ASP Core\\Project\\AspCoreUnitOfWorkEShop\\AspCoreUnitOfWorkEShop\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
